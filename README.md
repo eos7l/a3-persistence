@@ -6,15 +6,19 @@ This is a proof-of-concept shopping assistance web application that help consume
 
 To fulfill the requirements:
 ---
-### Express Packages:
+### Five Express Packages:
 
 - 
 
-### Authentication: 
+### Authentication Strategy & Database: 
 
 - 
 
 ### HTML:
+
+- 
+
+### CSS Framework:
 
 - 
 
@@ -38,6 +42,7 @@ Implications:
 
 Achievements:
 ---
+This is entirely different from what I built for A2 so none of the achievements are repeats from last name. 
 ### Technical:
 - 
 
