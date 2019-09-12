@@ -7,8 +7,10 @@ This is a proof-of-concept shopping assistance web application that help consume
 To fulfill the requirements:
 ---
 ### Five Express Packages:
-
-- 
+- Body-parser
+- Passport-local
+- Compress-file
+- Serve-static
 
 ### Authentication Strategy & Database: 
 
