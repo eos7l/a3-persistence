@@ -10,7 +10,7 @@ To fulfill the requirements:
 - Body-parser
 - Passport-local
 - Compress-file
-- Serve-static
+- Server-static
 
 ### Authentication Strategy & Database: 
 
@@ -46,10 +46,16 @@ Achievements:
 ---
 This is entirely different from what I built for A2 so none of the achievements are repeats from last name. 
 ### Technical:
-- 
+- Mongo/Couch DB?
 
 
 ### Design:
-- 
+- Used the following libraries:
+    - Typeit.js
+    
+- Animated checkbox?
+- Learned how to make right-aligned items in the list using the attribute direction
+
+    
 
 

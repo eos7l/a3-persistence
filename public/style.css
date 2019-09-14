@@ -942,7 +942,7 @@ section, header#home {
 .section-sub-title {
   font-family: 'Anonymous Pro', serif;
   font-size: 16px;
-  text-transform: lowercase;
+  /*text-transform: lowercase;*/
   letter-spacing: 1px;
   opacity: 1;
 }

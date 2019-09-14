@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang='en'>
+<head>
+    <meta charset='utf-8'>
+    <style>body { background:#000; }</style>
+</head>
+
+<body></body>
+
+<script>
+    fetch( '/login', {
+        method:'POST',
+        body:JSON.stringify({ username:'charlie', password:'charliee' }),
+        headers: { 'Content-Type': 'application/json' }
+    })
+        .then( res => res.json() )
+        .then( console.log )
+</script>
+</html>
+
+<script src="server.js"></script>
