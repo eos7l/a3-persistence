@@ -1,56 +1,29 @@
 const express    = require('express'),
     app        = express(),
     low = require('lowdb');
-    db = low( adapter );
     FileSync = require('lowdb/adapters/FileSync');
-    adapter = new FileSync('db.json');
+    adapter = new FileSync('data/db.json');
+    db = low( adapter );
     passport  = require( 'passport' ),
     Local     = require( 'passport-local' ).Strategy,
     session   = require( 'express-session' ),
     bodyparser = require( 'body-parser' );
+    logger = require('morgan');
+    cookieParser = require('cookie-parser');
     path = require('path');
+    router = express.Router();
+    port=8000;
 
 
 // automatically deliver all files in the public folder
 // with the correct headers / MIME type.
-app.use( express.static( 'public' ) );
+app.use( express.static(__dirname + '/public' ) );
 
 // get json when appropriate
 app.use( bodyparser.json() );
 
 db.defaults({ users:[] }).write();
-/*
-// define variables that reference elements on our page
-const wishListItems = document.getElementById('dreams');
-const dreamsForm = document.forms[0];
-const dreamInput = dreamsForm.elements['dream'];
 
-// a helper function that creates a list item for a given dream
-const appendNewDream = function(dream) {
-  const newListItem = document.createElement('li');
-  newListItem.innerHTML = dream;
-  dreamsList.appendChild(newListItem);
-}
-
-// iterate through every dream and add it to our page
-dreams.forEach( function(dream) {
-  appendNewDream(dream);
-});
-
-// listen for the form to be submitted and add a new dream when it is
-dreamsForm.onsubmit = function(event) {
-  // stop our form submission from refreshing the page
-  event.preventDefault();
-
-  // get dream value and add it to the list
-  dreams.push(dreamInput.value);
-  appendNewDream(dreamInput.value);
-
-  // reset form
-  dreamInput.value = '';
-  dreamInput.focus();
-};
-*/
 /*
 // add a user
 db.get( 'users' ).push({ name:'bob', age:42 }).write()
@@ -60,7 +33,7 @@ const seniors = db.get( 'users' )
     .value()
 */
 
-
+/*
 // all authentication requests in passwords assume that your client
 // is submitting a field named "username" and field named "password".
 // these are both passed as arugments to the authentication strategy.
@@ -75,7 +48,7 @@ const myLocalStrategy = function( username, password, done ) {
      - an error object (usually returned from database requests )
      - authentication status
      - a message / other data to send to client
-    */
+
     return done( null, false, { message:'user not found' })
   }else if( user.password === password ) {
     // we found the user and the password matches!
@@ -123,14 +96,19 @@ app.post(
       res.json({ status:true })
     }
 );
+*/
 
+app.get('/getItems', function(req, res) {
+    var books = db.get('items').value()
+
+})
 
 app.get('/', function (request, response) {
 
-    response.sendFile(__dirname + '/index.html');
+    response.sendFile(__dirname + '/public/items.html');
 
 });
 
 
 
-app.listen( process.env.PORT )
+app.listen( process.env.PORT|| port )
