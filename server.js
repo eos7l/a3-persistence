@@ -1,16 +1,15 @@
 const express    = require('express'),
     app        = express(),
+    low = require('lowdb');
+    db = low( adapter );
+    FileSync = require('lowdb/adapters/FileSync');
+    adapter = new FileSync('db.json');
     passport  = require( 'passport' ),
     Local     = require( 'passport-local' ).Strategy,
     session   = require( 'express-session' ),
     bodyparser = require( 'body-parser' );
+    path = require('path');
 
-
-const low = require('lowdb');
-const path = require("path");
-const FileSync = require('lowdb/adapters/FileSync');
-const adapter = new FileSync('db.json');
-const db = low( adapter );
 
 // automatically deliver all files in the public folder
 // with the correct headers / MIME type.
@@ -20,24 +19,47 @@ app.use( express.static( 'public' ) );
 app.use( bodyparser.json() );
 
 db.defaults({ users:[] }).write();
+/*
+// define variables that reference elements on our page
+const wishListItems = document.getElementById('dreams');
+const dreamsForm = document.forms[0];
+const dreamInput = dreamsForm.elements['dream'];
 
+// a helper function that creates a list item for a given dream
+const appendNewDream = function(dream) {
+  const newListItem = document.createElement('li');
+  newListItem.innerHTML = dream;
+  dreamsList.appendChild(newListItem);
+}
+
+// iterate through every dream and add it to our page
+dreams.forEach( function(dream) {
+  appendNewDream(dream);
+});
+
+// listen for the form to be submitted and add a new dream when it is
+dreamsForm.onsubmit = function(event) {
+  // stop our form submission from refreshing the page
+  event.preventDefault();
+
+  // get dream value and add it to the list
+  dreams.push(dreamInput.value);
+  appendNewDream(dreamInput.value);
+
+  // reset form
+  dreamInput.value = '';
+  dreamInput.focus();
+};
+*/
 /*
 // add a user
 db.get( 'users' ).push({ name:'bob', age:42 }).write()
 
 // filter users by age
 const seniors = db.get( 'users' )
-    .filter( user => user.age > 70 )
     .value()
 */
 
-
-// a simple table to store non-persistent data. for assignment #3
-// your data must be persistent between sessions using a database (lowdb)
-const users = [
-  { username:'charlie', password:'charliee' },
-  { username:'sylvia',    password:'poilkjmn' }
-]
 
 // all authentication requests in passwords assume that your client
 // is submitting a field named "username" and field named "password".
@@ -84,7 +106,7 @@ passport.deserializeUser( ( username, done ) => {
   }
 });
 
-app.use( session({ secret:'cats cats cats', resave:false, saveUninitialized:false }) );
+app.use( session({ secret:'topSecret', resave:false, saveUninitialized:false }) );
 app.use( passport.initialize() );
 app.use( passport.session() );
 
@@ -103,7 +125,11 @@ app.post(
 );
 
 
+app.get('/', function (request, response) {
 
+    response.sendFile(__dirname + '/index.html');
+
+});
 
 
 

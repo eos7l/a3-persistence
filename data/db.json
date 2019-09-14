@@ -1,0 +1,65 @@
+{
+  "users": [
+    {
+      "username": "swain",
+      "password": "$2a$10$3dV0t7/V4jVoX6BDmdU7auY1GuyxeP31TeqITT4LrCnieveZECuV6"
+    },
+    {
+      "username": "eos7l",
+      "password": "$2a$10$p9YblRA/eh88klVwCnrg6enhaAGbgm6Bf8Za9CICX6K2LKcr00Zmm"
+    }
+  ],
+  "items": [
+    {
+      "itemName": "Son & Park Beauty Water",
+      "category": "HB",
+      "list": "need",
+      "specifiedRetailerOnly": "Yes",
+      "URL": "https://seph.me/2kxrFgd",
+      "id": "4a588d9d-dd53-4e29-a548-4932cab38d4c"
+    },
+    {
+      "itemName": "Givenchy Small GV3 Leather Shoulder Bag",
+      "category": "CH",
+      "list": "want",
+      "specifiedRetailerOnly": "No",
+      "URL": "http://bit.ly/2md33JW",
+      "id": "2a86570e-5b7e-491d-9249-264a0815f64f"
+    },
+    {
+      "itemName": "Lenovo Legion Y740",
+      "categoryID": "EC",
+      "list": "want",
+      "specifiedRetailerOnly": "No",
+      "URL": "https://lnv.gy/2lRz8a3",
+      "id": "2f5f7b17-7d11-42a6-8778-6ddeed27b221"
+    },
+    {
+      "itemName": "Alienware Aurora R8 Desktop",
+      "categoryID": "EC",
+      "list": "need",
+      "specifiedRetailerOnly": "Yes",
+      "URL": "https://dell.to/2mgSaHc",
+      "id": "2fe4549g-grf3-cf3g-dwoj-6fecvmopwn1z"
+    },
+
+  ],
+  "categories": [
+    {
+      "id": "EC",
+      "name": "Electronics & Computers"
+    },
+    {
+      "id": "HB",
+      "name": "Health & Beauty"
+    },
+    {
+      "id": "HK",
+      "name": "Home & Kitchen"
+    },
+    {
+      "id": "CH",
+      "name": "Clothes & Handbags"
+    }
+  ]
+}
