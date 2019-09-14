@@ -55,7 +55,7 @@ This is entirely different from what I built for A2 so none of the achievements 
     
 - Animated checkbox?
 - Learned how to make right-aligned items in the list using the attribute direction
-
+- The original CSS template is not meant to be used for any business so I made a lot of changes to the page in order to fit the content well. 
     
 
 
