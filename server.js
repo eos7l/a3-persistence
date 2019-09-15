@@ -98,7 +98,7 @@ app.post(
 );
 */
 
-app.get('/getItems', function(req, res) {
+app.get('/submit', function(req, res) {
     var books = db.get('items').value()
 
 })

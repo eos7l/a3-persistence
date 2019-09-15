@@ -139,19 +139,70 @@
                                                data-filter=".photography">Home & Kitchen</a></li>
                                         <li><a class="btn btn-primary btn-transparent" href="#" data-filter=".video">Clothes
                                             & Handbags</a></li>
+                                        <li><a class="btn btn-primary btn-transparent" href="#" data-filter=".others">Others</a></li>
                                     </ul>
                                     <div class="col-sm-10">
                                         <div class="masonry-portfolio-items">
                                             <div class="row">
+                                                <div class="col-sm-4 masonry-portfolio-item mb30 apps">
 <!--                                                this section needs to be changed later-->
                                                 <form>
-                                                    <input name="dream" type="text" maxlength="100" placeholder="Dreams!" aria-labelledby="submit-dream">
+                                                    <input id="itemName" name="itemName" type="text" maxlength="100" placeholder="Item name" required>
+                                                    <input id="link" name="link" type="text" maxlength="200" placeholder="URL" required>
+<!--                                                    need to be changed later-->
+                                                    <label for="categoryOptions">Choose the item category:</label>
+                                                    <select id="categoryOptions" required>
+                                                        <option value="">--Please choose an option--</option>
+                                                        <option id="EC" name="categoryOptions" value="EC" onclick="clearChoice()">Electronics & Computers</option>
+                                                        <option id="HB" name="categoryOptions" value="HB" onclick="clearChoice()">Health & Beauty</option>
+                                                        <option id="HK" name="categoryOptions" value="HK" onclick="clearChoice()">Home & Kitchen</option>
+                                                        <option id="CH" name="categoryOptions" value="CH" onclick="clearChoice()">Clothes & Handbags</option>
+                                                        <option id="otherCategory" name="categoryOptions" value="other" onclick="clearChoice()">Other</option>
+                                                    </select>
+                                                    <div>
+                                                        <label for="listName">List Name</label><br>
+                                                        <div>
+                                                            <input type="radio" id="need" name="listName" value="need"
+                                                                   checked>
+                                                            <label for="need">Need</label>
+                                                        </div>
+                                                        <div>
+                                                            <input type="radio" id="want" name="listName" value="want">
+                                                            <label for="want">Want</label>
+                                                        </div>
+                                                        <div>
+                                                            <input type="radio" id="otherListName" name="listName" value="other">
+                                                            <label for="otherListName">Other</label>
+                                                            <input id="inputListName" type="text" name="listName" onclick="changeRadioButton()"/>​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <label for="retailer">Only shop from this specified retailer?</label><br>
+                                                        <div>
+                                                            <input type="radio" id="yes" name="retailer" value="yes"
+                                                                   checked>
+                                                            <label for="need">Yes</label>
+                                                        </div>
+                                                        <div>
+                                                            <input type="radio" id="no" name="retailer" value="no">
+                                                            <label for="want">No</label>
+                                                        </div>
+
+                                                    </div>
+                                                    <br>
+
+<!--                                                    -->
+<!--                                                    need to be changed later-->
+<!--                                                    -->
+
+
                                                     <button type="submit" id="submit-dream">Submit Dream</button>
                                                 </form>
 
                                                 <section class="dreams">
                                                     <ul id="dreams"></ul>
                                                 </section>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -232,36 +283,7 @@
 <script src="assets/js/plugins.js"></script>
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 <script src="assets/js/init.js"></script>
-
+<script src="script.js"></script>
 </body>
-<script>
-    const dreams=[];
-    // define variables that reference elements on our page
-    const dreamsList = document.getElementById('dreams');
-    const dreamsForm = document.forms[0];
-    const dreamInput = dreamsForm.elements['dream'];
 
-    // a helper function that creates a list item for a given dream
-    const appendNewDream = function (dream) {
-        const newListItem = document.createElement('li');
-        newListItem.innerHTML = dream;
-        dreamsList.appendChild(newListItem);
-    }
-    // iterate through every dream and add it to our page
-    dreams.forEach(function (dream) {
-        appendNewDream(dream);
-    });
-    // listen for the form to be submitted and add a new dream when it is
-    dreamsForm.onsubmit = function (event) {
-        // stop our form submission from refreshing the page
-        event.preventDefault();
-        // get dream value and add it to the list
-        dreams.push(dreamInput.value);
-        appendNewDream(dreamInput.value);
-        // reset form
-        dreamInput.value = '';
-        dreamInput.focus();
-    };
-
-</script>
 </html>
