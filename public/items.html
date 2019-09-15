@@ -142,9 +142,9 @@
                                         <li><a class="btn btn-primary btn-transparent" href="#" data-filter=".others">Others</a></li>
                                     </ul>
                                     <div class="col-sm-10">
-                                        <div class="masonry-portfolio-items">
+                                        <div style="height: auto !important;" >
                                             <div class="row">
-                                                <div class="col-sm-4 masonry-portfolio-item mb30 apps">
+                                                <div class="col-sm-4  mb30 apps">
 <!--                                                this section needs to be changed later-->
                                                 <form>
                                                     <input id="itemName" name="itemName" type="text" maxlength="100" placeholder="Item name" required>
@@ -194,14 +194,11 @@
 <!--                                                    -->
 <!--                                                    need to be changed later-->
 <!--                                                    -->
-
-
-                                                    <button type="submit" id="submit-dream">Submit Dream</button>
+                                                    <button type="submit" id="submitButton">Submit Dream</button>
                                                 </form>
-
-                                                <section class="dreams">
-                                                    <ul id="dreams"></ul>
-                                                </section>
+                                                    <div class="boxcontainer">
+                                                        <table id="itemTable"></table>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

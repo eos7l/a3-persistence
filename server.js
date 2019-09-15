@@ -1,28 +1,76 @@
-const express    = require('express'),
-    app        = express(),
-    low = require('lowdb');
-    FileSync = require('lowdb/adapters/FileSync');
-    adapter = new FileSync('data/db.json');
-    db = low( adapter );
-    passport  = require( 'passport' ),
-    Local     = require( 'passport-local' ).Strategy,
-    session   = require( 'express-session' ),
-    bodyparser = require( 'body-parser' );
-    logger = require('morgan');
-    cookieParser = require('cookie-parser');
-    path = require('path');
-    router = express.Router();
-    port=8000;
+const express = require('express'),
+    app = express(),
+    low = require('lowdb'),
+    FileSync = require('lowdb/adapters/FileSync'),
+    adapter = new FileSync('data/db1.json'),
+    db = low(adapter),
+    passport = require('passport'),
+    Local = require('passport-local').Strategy,
+    session = require('express-session'),
+    bodyparser = require('body-parser'),
+    logger = require('morgan'),
+    cookieParser = require('cookie-parser'),
+    path = require('path'),
+    helmet = require('helmet'),
+    router = express.Router(),
+    port = 8000;
 
+
+const appdata = [
+        {
+            "itemName": "Son & Park Beauty Water",
+            "category": "Health & Beauty",
+            "list": "need",
+            "specifiedRetailerOnly": "Yes",
+            "URL": "https://seph.me/2kxrFgd"
+        },
+        {
+            "itemName": "Givenchy Small GV3 Leather Shoulder Bag",
+            "category": "Clothes & Handbags",
+            "list": "want",
+            "specifiedRetailerOnly": "No",
+            "URL": "http://bit.ly/2md33JW"
+        },
+        {
+            "itemName": "Lenovo Legion Y740",
+            "category": "Electronics & Computers",
+            "list": "want",
+            "specifiedRetailerOnly": "No",
+            "URL": "https://lnv.gy/2lRz8a3"
+        },
+        {
+            "itemName": "Alienware Aurora R8 Desktop",
+            "category": "Electronics & Computers",
+            "list": "need",
+            "specifiedRetailerOnly": "Yes",
+            "URL": "https://dell.to/2mgSaHc"
+        }
+    ]
+const users = [
+    {username: 'swain', password: 'cain'},
+    {username: 'eos7l', password: 'swdw'}
+]
+
+
+db.defaults({appdata: appdata, users: users}).write();
 
 // automatically deliver all files in the public folder
 // with the correct headers / MIME type.
-app.use( express.static(__dirname + '/public' ) );
+app.use(express.static(__dirname + '/public'));
+app.use(cookieParser());
+app.use(helmet());
+app.use(bodyparser.json());
+app.use(passport.initialize());
+//passport.use( new Local( myLocalStrategy ) );
 
-// get json when appropriate
-app.use( bodyparser.json() );
+app.get('/', function (req, res) {
+    // Cookies that have not been signed
+    console.log('Cookies: ', req.cookies)
 
-db.defaults({ users:[] }).write();
+    // Cookies that have been signed
+    console.log('Signed Cookies: ', req.signedCookies)
+})
+
 
 /*
 // add a user
@@ -98,17 +146,44 @@ app.post(
 );
 */
 
-app.get('/submit', function(req, res) {
-    var books = db.get('items').value()
 
-})
+// app.post('/test', function( req, res ) {
+//     console.log( 'authenticate with cookie?', req.user );
+//     res.json({ status:'success' })
+// })
 
-app.get('/', function (request, response) {
-
-    response.sendFile(__dirname + '/public/items.html');
-
+app.get('/newData', (req, res) => {
+    let data = db.get('appdata').value();
+    res.send(data)
 });
 
 
+app.post('/submit', function (req, res) {
+    let data = req.body;
+    db.get('appdata').push(data).write()
+    res.status(200).send("Successfully added new character");
+});
 
-app.listen( process.env.PORT|| port )
+app.post('/update', function (req, res) {
+    const index = req.body.index,
+        indexVal = db.get('appdata[' + index + ']').value();
+    console.log(indexVal.house)
+    db.get('appdata').find(indexVal).assign({
+        itemName: req.body.itemName,
+        category: req.body.category,
+        list: req.body.list,
+        url: req.body.url,
+        specifiedRetailerOnly: req.body.specifiedRetailerOnly
+    }).write()
+    res.status(200).send("updated")
+})
+
+app.post('/delete', function (req, res) {
+    const index = req.body.deletedData,
+        indexVal = db.get('appdata[' + index + ']').value()
+    db.get('appdata').remove(indexVal).write();
+    res.status(200).send("deleted")
+})
+
+
+app.listen(process.env.PORT || port)

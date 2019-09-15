@@ -1,0 +1,54 @@
+{
+  "appdata": [
+    {
+      "itemName": "Son & Park Beauty Water",
+      "category": "Health & Beauty",
+      "list": "need",
+      "specifiedRetailerOnly": "Yes",
+      "URL": "https://seph.me/2kxrFgd"
+    },
+    {
+      "itemName": "Givenchy Small GV3 Leather Shoulder Bag",
+      "category": "Clothes & Handbags",
+      "list": "want",
+      "specifiedRetailerOnly": "No",
+      "URL": "http://bit.ly/2md33JW"
+    },
+    {
+      "itemName": "Lenovo Legion Y740",
+      "category": "Electronics & Computers",
+      "list": "want",
+      "specifiedRetailerOnly": "No",
+      "URL": "https://lnv.gy/2lRz8a3"
+    },
+    {
+      "itemName": "Alienware Aurora R8 Desktop",
+      "category": "Electronics & Computers",
+      "list": "need",
+      "specifiedRetailerOnly": "Yes",
+      "URL": "https://dell.to/2mgSaHc"
+    },
+    {
+      "itemName": "ca",
+      "category": "HB",
+      "list": "need",
+      "URL": "ca"
+    },
+    {
+      "itemName": "sw",
+      "category": "HB",
+      "list": "need",
+      "URL": "sw"
+    }
+  ],
+  "users": [
+    {
+      "username": "swain",
+      "password": "cain"
+    },
+    {
+      "username": "eos7l",
+      "password": "swdw"
+    }
+  ]
+}

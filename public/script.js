@@ -1,4 +1,4 @@
-const dreams=[];
+/*const dreams=[];
 // define variables that reference elements on our page
 const dreamsList = document.getElementById('dreams');
 const dreamsForm = document.forms[0];
@@ -25,23 +25,25 @@ dreamsForm.onsubmit = function (event) {
     dreamInput.value = '';
     dreamInput.focus();
 };
+*/
 
+let curUser;
 
 const submit = function (e) {
     e.preventDefault()
     let dropdown = document.getElementById("categoryOptions");
     const itemName = document.querySelector('#itemName').value,
-        link = document.querySelector('#link').value,
+        url = document.querySelector('#link').value,
         category = dropdown.options[dropdown.selectedIndex].value,
         list= document.querySelector('input[name="listName"]:checked').value,
         retailer = document.querySelector('input[name="retailer"]:checked').value;
         let specifiedListName;
         switch (retailer) {
             case 'need':
-                specifiedListName = 'need'
+                specifiedListName = 'need';
                 break
             case 'want':
-                specifiedListName='want'
+                specifiedListName='want';
                 break
             default:
                 if(document.getElementById('otherListName').checked) {
@@ -53,7 +55,7 @@ const submit = function (e) {
                 'category': category,
                 'list': list,
                 'specifiedRetailerOnly': specifiedListName,
-                'URL': link,
+                'URL': url,
             },
 
             body = JSON.stringify(json)
@@ -124,72 +126,50 @@ const deleteRow = function (row) {
         headers: { 'Content-Type': 'application/json' },
         body
     });
-    diplayDB();
+    displayDB();
 };
 
-
-const genTable = function (studentList, editIndex) {
-    let studentTable = document.querySelector('#HogwartsStudents');
-    studentTable.innerHTML =
+const fillTableInfo = function (shoppingData, editRowNum) {
+    let wishListTable = document.querySelector('#itemTable');
+    wishListTable.innerHTML =
         '<tr>\n' +
-        '<th align="center">First Name</th>\n' +
-        '<th align="center">Last Name</th>\n' +
-        '<th align="center">Pronouns</th>\n' +
-        '<th align="center">House</th>\n' +
+        '<th align="center">Item Name</th>\n' +
+        '<th align="center">Category</th>\n' +
+        '<th align="center">List</th>\n' +
+        '<th align="center">Specified Retailer Only?</th>\n' +
+        '<th align="center">URL</th>\n' +
         '<th align="center">Edit</th>\n' +
         '<th align="center">Delete</th>\n' +
         '</tr>';
-
-    for (let i = 0; i < studentList.length; i++) {
-        const currentStudent = studentList[i];
-        if(currentStudent.user === currUser) {
+    for (let i = 0; i < shoppingData.length; i++) {
+        const itemOfChoice = shoppingData[i];
+        //if(itemOfChoice.user === curUser)
+        //{
             let newLine = '<tr>\n';
-            var houseColor;
-            if(currentStudent.house === 'Gryffindor' || currentStudent.house === 'gryffindor') {
-                currentStudent.house = 'Gryffindor'
-                houseColor = '<div id="gryffindorbg">'
-            }
-            else if(currentStudent.house === 'Hufflepuff' || currentStudent.house === 'hufflepuff') {
-                currentStudent.house = 'Hufflepuff'
-                houseColor = '<div id="hufflepuffbg">'
-            }
-            else if(currentStudent.house === 'Ravenclaw' || currentStudent.house === 'ravenclaw') {
-                currentStudent.house = 'Ravenclaw'
-                houseColor = '<div id="ravenclawbg">'
-            }
-            else if(currentStudent.house === 'Slytherin' || currentStudent.house === 'slytherin') {
-                currentStudent.house = 'Slytherin'
-                houseColor = '<div id="slytherinbg">'
-            }
-            else {
-                currentStudent.house = 'Muggle'
-                houseColor = '<div id="mugglebg">'
-            }
-            if(i === editIndex) {
-                newLine += ('<td align="center">' + houseColor + '<input id="firstName' + i + '" type="text" value="' + currentStudent.firstName + '"> </div></td>\n');
-                newLine += ('<td align="center">' + houseColor + '<input id="lastName' + i + '" type="text" value="' + currentStudent.lastName + '"> </div></td>\n');
-                newLine += ('<td align="center">' + houseColor + '<input id="pronouns' + i + '" type="text" value="' + currentStudent.pronouns + '"> </div></td>\n');
-                newLine += ('<td align="center">' + houseColor + '<input id="house' + i + '" type="text" value="' + currentStudent.house + '"></div></td>\n');
-                newLine += ('<td align="center">' + houseColor + '<button id="update' + i + '" onclick="updateRow(' + i + ')"> Update </button></div></td>\n');
-                newLine += ('<td align="center">' + houseColor + '<button id="delete' + i + '" onclick="deleteRow(' + i + ')"> X </button></div></td>\n');
+            if(i === editRowNum) {
+                newLine += ('<td align="center">' + '<input id="itemNameInput' + i + '" type="text" value="' + itemOfChoice.updatedItem + '"> </div></td>\n');
+                newLine += ('<td align="center">' + '<input id="linkInput' + i + '" type="text" value="' + itemOfChoice.updatedLink + '"> </div></td>\n');
+                newLine += ('<td align="center">' + '<input id="listInput' + i + '" type="text" value="' + itemOfChoice.updatedList + '"> </div></td>\n');
+                newLine += ('<td align="center">' + '<input id="categoryInput' + i + '" type="text" value="' + itemOfChoice.updatedCategory + '"></div></td>\n');
+                newLine += ('<td align="center">' + '<input id="retailerInput' + i + '" type="text" value="' + itemOfChoice.updatedRetailer + '"></div></td>\n');
+                newLine += ('<td align="center">' + '<button id="update' + i + '" onclick="updateRow(' + i + ')"> Update </button></div></td>\n');
+                newLine += ('<td align="center">' +  '<button id="delete' + i + '" onclick="deleteRow(' + i + ')"> X </button></div></td>\n');
                 newLine += '</tr>';
             }
             else {
-                newLine += ('<td align="center">' + houseColor + currentStudent.firstName + '</div></td>\n');
-                newLine += ('<td align="center">' + houseColor + currentStudent.lastName + '</div></td>\n');
-                newLine += ('<td align="center">' + houseColor + currentStudent.pronouns + '</td>\n');
-                newLine += ('<td align="center">' + houseColor+ currentStudent.house + '</td>\n');
-                newLine += ('<td align="center">' + houseColor + '<button id="' + i + '" onclick="editRow(' + i + ')"> Edit </button></td>\n');
-                newLine += ('<td align="center">' + houseColor + '<button id="' + i + '" onclick="deleteRow(' + i + ')"> X </button></td>\n');
+                newLine += ('<td align="center">' + itemOfChoice.itemName + '</div></td>\n');
+                newLine += ('<td align="center">' + itemOfChoice.url + '</div></td>\n');
+                newLine += ('<td align="center">' + itemOfChoice.category + '</td>\n');
+                newLine += ('<td align="center">' + itemOfChoice.list + '</td>\n');
+                newLine += ('<td align="center">' + itemOfChoice.retailer + '</td>\n');
+                newLine += ('<td align="center">' + '<button id="' + i + '" onclick="editRow(' + i + ')"> Edit </button></td>\n');
+                newLine += ('<td align="center">' + '<button id="' + i + '" onclick="deleteRow(' + i + ')"> X </button></td>\n');
                 newLine += '</div>' + '</tr>';
             }
-
-            studentTable.innerHTML += newLine
-        }
-
+            wishListTable.innerHTML += newLine
+        //}
     }
 }
-
 
 const displayDB = function () {
     fetch('/newData', {
@@ -197,6 +177,30 @@ const displayDB = function () {
     }).then(function(response) {
         return response.json()
     }).then(function (dataRow) {
-        genTable(dataRow, -999)
+        fillTableInfo(dataRow, -999)
     })
+}
+
+window.onload = function () {
+    fetch( '/test', {
+        method:'POST',
+        credentials: 'include'
+    }).then( console.log )
+        .catch( err => console.error );
+    // const homeLoginButton = document.getElementById('homelogin')
+    // const cancelLoginButton = document.getElementById('cancelLogin')
+    const submitButton = document.getElementById('submitButton');
+    // const loginButton = document.getElementById('loginButton')
+    // const registerButton = document.getElementById('register')
+    // const cancelRegisterButton = document.getElementById('cancelRegister')
+    // const confirmRegisterButton = document.getElementById('confirmRegister')
+    // const logoutButton = document.getElementById('logout')
+    // homeLoginButton.onclick = homeLogin
+    submitButton.onclick = submit;
+    // loginButton.onclick = login
+    // cancelLoginButton.onclick = cancelLogin
+    // registerButton.onclick = register
+    // cancelRegisterButton.onclick = cancelRegister
+    // confirmRegisterButton.onclick = confirmRegister
+    // logoutButton.onclick = logout
 }
