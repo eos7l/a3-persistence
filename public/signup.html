@@ -10,6 +10,7 @@
     <link href="assets/bootstrap/css/bootstrap-newer.min.css" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
     <link href="assets/font-awesome/css/all.css" rel="stylesheet">
+    <script src="script.js"></script>
 </head>
 
 <!-- This snippet uses Font Awesome 5 Free as a dependency. You can download it at fontawesome.io! -->
@@ -25,13 +26,14 @@
                         <div class="form-group text-center">
                             <input type="text" id="inputUsername"  class="mx-auto form-control col-md-10 mb20 text-center" placeholder="Username" required autofocus>
                             <input type="password" id="inputPassword" class="mx-auto form-control col-md-10 mb10 text-center"  placeholder="Password" required>
+<!--                            <input type="password" id="inputConfirmPassword" class="mx-auto form-control col-md-10 mb10 text-center"  placeholder="Confirm Password" required>-->
                         </div>
                         <div></div>
                         <hr class="my-3" style="border-color:white!important;" >
-                        <button class=" text-center btn-md col-md-10 mt15 btn-primary btn-block text-uppercase mx-auto" type="submit">Sign Up</button>
+                        <button id="registerBtn" class=" text-center btn-md col-md-10 mt15 btn-primary btn-block text-uppercase mx-auto" type="submit">Sign Up</button>
                         <hr class="my-4">
                     </form>
-                    <button class="btn btn-sm btn-block" style="text-transform: none!important; margin-top:10px; font-weight: normal" type="submit">Already have an account? <br></br><strong>Login here</strong></button>
+                    <button class="btn btn-sm btn-block" style="text-transform: none!important; margin-top:10px; font-weight: normal" type="submit">Already have an account? <br><strong><a href="index.html">Login here</a></strong></button>
                 </div>
             </div>
         </div>
@@ -39,7 +41,5 @@
 </div>
 </body>
 
-<script>
 
-</script>
 </html>

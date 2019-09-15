@@ -65,11 +65,11 @@ app.use(passport.initialize());
 
 app.get('/', function (req, res) {
     // Cookies that have not been signed
-    console.log('Cookies: ', req.cookies)
-
+    console.log('Cookies: ', req.cookies);
     // Cookies that have been signed
     console.log('Signed Cookies: ', req.signedCookies)
-})
+});
+
 
 
 /*
@@ -81,14 +81,14 @@ const seniors = db.get( 'users' )
     .value()
 */
 
-/*
+
 // all authentication requests in passwords assume that your client
 // is submitting a field named "username" and field named "password".
 // these are both passed as arugments to the authentication strategy.
 const myLocalStrategy = function( username, password, done ) {
   // find the first item in our users array where the username
   // matches what was sent by the client. nicer to read/write than a for loop!
-  const user = users.find( __user => __user.username === username );
+  const user = db.get('users').value().find( __user => __user.username === username )
 
   // if user is undefined, then there was no match for the submitted username
   if( user === undefined ) {
@@ -96,7 +96,7 @@ const myLocalStrategy = function( username, password, done ) {
      - an error object (usually returned from database requests )
      - authentication status
      - a message / other data to send to client
-
+*/
     return done( null, false, { message:'user not found' })
   }else if( user.password === password ) {
     // we found the user and the password matches!
@@ -109,8 +109,22 @@ const myLocalStrategy = function( username, password, done ) {
   }
 }
 
-passport.use( new Local( myLocalStrategy ) );
+passport.use( 'local-login', new Local( myLocalStrategy ) );
 passport.initialize();
+
+
+app.post(
+    '/login',
+    passport.authenticate( 'local-login',{
+
+    } ),
+    function( req, res ) {
+        console.log( 'user:', req.user );
+        res.json({ status:true })
+        //might need to change this
+        //res.redirect('/');
+    }
+);
 
 passport.serializeUser( ( user, done ) => done( null, user.username ) );
 
@@ -136,15 +150,17 @@ app.post('/test', function( req, res ) {
   res.json({ status:'success' })
 });
 
-app.post(
-    '/login',
-    passport.authenticate( 'local' ),
-    function( req, res ) {
-      console.log( 'user:', req.user );
-      res.json({ status:true })
-    }
-);
-*/
+
+app.get('/register', (req, res) => {
+    let data = db.get('users').value();
+    res.send(data)
+})
+
+app.post('/register', (req, res) => {
+    var data = req.body;
+    db.get('users').push(data).write()
+    res.status(200).send("Added user to database")
+});
 
 
 // app.post('/test', function( req, res ) {
