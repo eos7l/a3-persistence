@@ -14,6 +14,7 @@ const express = require('express'),
     helmet = require('helmet'),
     router = express.Router(),
     compression = require('compression'),
+    dir='public/'
     port = 8000;
 
 
@@ -57,7 +58,7 @@ db.defaults({appdata: appdata, users: users}).write();
 
 // automatically deliver all files in the public folder
 // with the correct headers / MIME type.
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(dir));
 app.use(cookieParser());
 app.use(helmet());
 app.use(compression());
@@ -81,7 +82,7 @@ app.get('/', function (req, res) {
 const myLocalStrategy = function( username, password, done ) {
   // find the first item in our users array where the username
   // matches what was sent by the client. nicer to read/write than a for loop!
-  const user = db.get('users').value().find( __user => __user.username === username )
+  const user = db.get('users').value().find( __user => __user.username === username );
   // if user is undefined, then there was no match for the submitted username
   if( user === undefined ) {
     /* arguments to done():
@@ -99,14 +100,13 @@ const myLocalStrategy = function( username, password, done ) {
     // we found the user but the password didn't match...
     return done( null, false, { message: 'incorrect password' })
   }
-}
+};
 
 passport.use( 'local-login', new Local( myLocalStrategy ) );
 passport.initialize();
 
 
-app.post(
-    '/login',
+app.post('/login',
     passport.authenticate( 'local-login',{
         failureRedirect: "/"
     } ),
@@ -139,21 +139,20 @@ app.post('/test', function( req, res ) {
   res.json({ status:'success' })
 });
 
+app.get('/newData', (req, res) => {
+    let data = db.get('appdata').value();
+    res.send(data)
+});
 
 app.get('/register', (req, res) => {
     let data = db.get('users').value();
     res.send(data)
-})
+});
 
 app.post('/register', (req, res) => {
     var data = req.body;
     db.get('users').push(data).write();
-    res.redirect('/');
-});
-
-app.get('/newData', (req, res) => {
-    let data = db.get('appdata').value();
-    res.send(data)
+    res.status(200).send("Added user to database");
 });
 
 
@@ -166,7 +165,6 @@ app.post('/submit', function (req, res) {
 app.post('/update', function (req, res) {
     const index = req.body.index,
         indexVal = db.get('appdata[' + index + ']').value();
-    console.log(indexVal.house)
     db.get('appdata').find(indexVal).assign({
         itemName: req.body.itemName,
         category: req.body.category,
@@ -179,7 +177,7 @@ app.post('/update', function (req, res) {
 
 app.post('/delete', function (req, res) {
     const index = req.body.deletedData,
-        indexVal = db.get('appdata[' + index + ']').value()
+        indexVal = db.get('appdata[' + index + ']').value();
     db.get('appdata').remove(indexVal).write();
     res.status(200).send("deleted!")
 })

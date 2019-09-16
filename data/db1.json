@@ -27,18 +27,6 @@
       "list": "need",
       "specifiedRetailerOnly": "Yes",
       "URL": "https://dell.to/2mgSaHc"
-    },
-    {
-      "itemName": "ca",
-      "category": "HB",
-      "list": "need",
-      "URL": "ca"
-    },
-    {
-      "itemName": "sw",
-      "category": "HB",
-      "list": "need",
-      "URL": "sw"
     }
   ],
   "users": [
@@ -50,21 +38,5 @@
       "username": "eos7l",
       "password": "swdw"
     },
-    {},
-    {},
-    {},
-    {
-      "username": "1223",
-      "password": "1223"
-    },
-    {
-      "username": "1223",
-      "password": "1223"
-    },
-    {},
-    {},
-    {},
-    {},
-    {}
   ]
 }
