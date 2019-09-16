@@ -63,9 +63,7 @@ app.use(helmet());
 app.use(compression());
 app.use(bodyparser.json());
 app.use(passport.initialize());
-app.use( session({ secret:'topSecret', resave:false, saveUninitialized:false }) );
-app.use( passport.initialize() );
-app.use( passport.session() );
+
 //passport.use( new Local( myLocalStrategy ) );
 
 app.get('/', function (req, res) {
@@ -132,7 +130,9 @@ passport.deserializeUser( ( username, done ) => {
     done( null, false, { message:'user not found; session not restored' })
   }
 });
-
+app.use( session({ secret:'topSecret', resave:false, saveUninitialized:false }) );
+app.use( passport.initialize() );
+app.use( passport.session() );
 
 app.post('/test', function( req, res ) {
   console.log( 'authenticate with cookie?', req.user );
@@ -150,12 +150,6 @@ app.post('/register', (req, res) => {
     db.get('users').push(data).write();
     res.redirect('/');
 });
-
-
-// app.post('/test', function( req, res ) {
-//     console.log( 'authenticate with cookie?', req.user );
-//     res.json({ status:'success' })
-// })
 
 app.get('/newData', (req, res) => {
     let data = db.get('appdata').value();
