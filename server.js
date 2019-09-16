@@ -13,6 +13,7 @@ const express = require('express'),
     path = require('path'),
     helmet = require('helmet'),
     router = express.Router(),
+    compression = require('compression'),
     port = 8000;
 
 
@@ -59,8 +60,12 @@ db.defaults({appdata: appdata, users: users}).write();
 app.use(express.static(__dirname + '/public'));
 app.use(cookieParser());
 app.use(helmet());
+app.use(compression());
 app.use(bodyparser.json());
 app.use(passport.initialize());
+app.use( session({ secret:'topSecret', resave:false, saveUninitialized:false }) );
+app.use( passport.initialize() );
+app.use( passport.session() );
 //passport.use( new Local( myLocalStrategy ) );
 
 app.get('/', function (req, res) {
@@ -72,16 +77,6 @@ app.get('/', function (req, res) {
 
 
 
-/*
-// add a user
-db.get( 'users' ).push({ name:'bob', age:42 }).write()
-
-// filter users by age
-const seniors = db.get( 'users' )
-    .value()
-*/
-
-
 // all authentication requests in passwords assume that your client
 // is submitting a field named "username" and field named "password".
 // these are both passed as arugments to the authentication strategy.
@@ -89,7 +84,6 @@ const myLocalStrategy = function( username, password, done ) {
   // find the first item in our users array where the username
   // matches what was sent by the client. nicer to read/write than a for loop!
   const user = db.get('users').value().find( __user => __user.username === username )
-
   // if user is undefined, then there was no match for the submitted username
   if( user === undefined ) {
     /* arguments to done():
@@ -116,13 +110,11 @@ passport.initialize();
 app.post(
     '/login',
     passport.authenticate( 'local-login',{
-
+        failureRedirect: "/"
     } ),
     function( req, res ) {
         console.log( 'user:', req.user );
-        res.json({ status:true })
-        //might need to change this
-        //res.redirect('/');
+        res.redirect('/main');
     }
 );
 
@@ -141,9 +133,6 @@ passport.deserializeUser( ( username, done ) => {
   }
 });
 
-app.use( session({ secret:'topSecret', resave:false, saveUninitialized:false }) );
-app.use( passport.initialize() );
-app.use( passport.session() );
 
 app.post('/test', function( req, res ) {
   console.log( 'authenticate with cookie?', req.user );
@@ -158,8 +147,8 @@ app.get('/register', (req, res) => {
 
 app.post('/register', (req, res) => {
     var data = req.body;
-    db.get('users').push(data).write()
-    res.status(200).send("Added user to database")
+    db.get('users').push(data).write();
+    res.redirect('/');
 });
 
 
@@ -176,8 +165,8 @@ app.get('/newData', (req, res) => {
 
 app.post('/submit', function (req, res) {
     let data = req.body;
-    db.get('appdata').push(data).write()
-    res.status(200).send("Successfully added new character");
+    db.get('appdata').push(data).write();
+    res.status(200).send("pushed!");
 });
 
 app.post('/update', function (req, res) {
@@ -190,15 +179,15 @@ app.post('/update', function (req, res) {
         list: req.body.list,
         url: req.body.url,
         specifiedRetailerOnly: req.body.specifiedRetailerOnly
-    }).write()
-    res.status(200).send("updated")
+    }).write();
+    res.status(200).send("updated!")
 })
 
 app.post('/delete', function (req, res) {
     const index = req.body.deletedData,
         indexVal = db.get('appdata[' + index + ']').value()
     db.get('appdata').remove(indexVal).write();
-    res.status(200).send("deleted")
+    res.status(200).send("deleted!")
 })
 
 

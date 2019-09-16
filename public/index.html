@@ -10,7 +10,6 @@
     <link href="assets/bootstrap/css/bootstrap-newer.min.css" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
     <link href="assets/font-awesome/css/all.css" rel="stylesheet">
-    <script src="script.js"></script>
 </head>
 
 <!-- This snippet uses Font Awesome 5 Free as a dependency. You can download it at fontawesome.io! -->
@@ -22,22 +21,24 @@
             <div class="card my-5">
                 <div class="card-body text-center">
                     <h3 class="section-title text-center" style="font-size:38px; margin-bottom: 25px">Login</h3>
-                    <form class="text-center">
+                    <form  method='post' action='login' class="text-center">
                         <div class="form-group text-center">
-                            <input type="text" id="inputUsername"  class="mx-auto form-control col-md-10 mb20 text-center" placeholder="Username" required autofocus>
-                            <input type="password" id="inputPassword" class="mx-auto form-control col-md-10 mb10 text-center"  placeholder="Password" required>
+                            <input type="text" id="usernameField"  class="mx-auto form-control col-md-10 mb20 text-center" placeholder="Username" required autofocus>
+                            <input type="password" id="passwordField" class="mx-auto form-control col-md-10 mb10 text-center"  placeholder="Password" required>
                         </div>
                         <div></div>
                         <hr class="my-3" style="border-color:white!important;" >
                         <button id="loginBtn" class="text-center btn-md col-md-10 mt15 btn-primary btn-block text-uppercase mx-auto" type="submit">Sign in</button>
                         <hr class="my-4">
                     </form>
-                    <button class="btn btn-sm btn-block" style="text-transform: none!important; margin-top:10px; font-weight: normal" type="submit">Don't have an account yet? <br><strong><a href="signup.html">Sign Up here</a></strong></button>
+                    <button class="btn btn-sm btn-block" style="text-transform: none!important; margin-top:10px; font-weight: normal" type="submit">Don't have an account yet? <br><strong><a href="signup.html">Sign up here</a></strong></button>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script src="script.js"></script>
+
 </body>
 
 

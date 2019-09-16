@@ -2,78 +2,64 @@ let curUser;
 
 
 const hideForm = function (e) {
-    e.preventDefault()
+    e.preventDefault();
     document.getElementById('inputForm').style.display = ""
 };
 
-const confirmRegister = function (e) {
-    e.preventDefault()
+const register = function (e) {
+    e.preventDefault();
     const username = document.getElementById('inputUsername').value,
         password = document.getElementById('inputPassword').value;
+    console.log("regUsername:"+username);
+    console.log("regPassword:"+password);
     fetch('/register', {
         method: 'GET'
     }).then(function (response) {
         return response.json()
     }).then(function (userList) {
-        registerCheck(userList, username, password)
+        addUser(userList, username, password)
     })
 };
 
-function registerCheck(userList, username, password) {
-    let emptyCheck = false;
-    if (username === "" || password === "") {
-        emptyCheck = true;
-    }
-    if (emptyCheck === false) {
-        let dupUserCheck = false;
-        for (let i = 0; i < userList.length; i++) {
-            if (userList[i].username === username) {
-                dupUserCheck = true;
-                i = userList.length;
-            }
-        }
-        if (dupUserCheck === false) {
-            const json = {
-                    'username': username,
-                    'password': password
-                },
-                body = JSON.stringify(json);
-            fetch('/register', {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body
-            })
-        }
-    }
-
-
+function addUser(userList, username, password) {
+    const json = {
+            'username': username,
+            'password': password
+        },
+        body = JSON.stringify(json);
+    fetch('/register', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body
+    })
 }
 
 const login = function (e) {
     e.preventDefault();
-    const username = document.getElementById('username').value,
-          password = document.getElementById('password').value;
+    const username = document.getElementById('usernameField').value,
+        password = document.getElementById('passwordField').value;
+    console.log("loginUsername:"+username);
+    console.log("loginPassword:"+password);
     const user = {
             'username': username,
             'password': password
         },
         body = JSON.stringify(user);
-    console.log(body)
+    console.log(body);
     fetch('/login', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json'},
+        headers: {'Content-Type': 'application/json'},
         body
     }).then(function (response) {
-        if(response.status === 200) {
+        if (response.status === 200) {
             curUser = username;
             displayDB();
-        }
-        else {
+        } else {
             alert("Something bad happened!")
         }
         fetch('/register', {
             method: 'GET'
-        }).then(function(response) {
+        }).then(function (response) {
             return response.json()
         }).then(function (users) {
             console.log(users)
@@ -93,15 +79,14 @@ const submit = function (e) {
     switch (retailer) {
         case 'need':
             specifiedListName = 'need';
-            break
+            break;
         case 'want':
             specifiedListName = 'want';
-            break
+            break;
         default:
             if (document.getElementById('otherListName').checked) {
                 specifiedListName = document.getElementById('inputListName').value
             }
-
             const json = {
                     'itemName': itemName,
                     'category': category,
@@ -109,8 +94,7 @@ const submit = function (e) {
                     'specifiedRetailerOnly': specifiedListName,
                     'URL': url,
                 },
-
-                body = JSON.stringify(json)
+                body = JSON.stringify(json);
 
             fetch('/submit', {
                 method: 'POST',
@@ -132,8 +116,8 @@ function changeRadioButton() {
 }
 
 function clearChoice() {
-    document.getElementById("otherListName").value = ""
-    document.getElementById("inputListName").value = ""
+    document.getElementById("otherListName").value = "";
+    document.getElementById("inputListName").value = "";
 }
 
 const updateRow = function (row) {
@@ -196,8 +180,8 @@ const fillTableInfo = function (shoppingData, editRowNum) {
         '</tr>';
     for (let i = 0; i < shoppingData.length; i++) {
         const itemOfChoice = shoppingData[i];
-        //if(itemOfChoice.user === curUser)
-        //{
+        if(itemOfChoice.user === curUser)
+        {
         let newLine = '<tr>\n';
         if (i === editRowNum) {
             newLine += ('<td align="center">' + '<input id="itemNameInput' + i + '" type="text" value="' + itemOfChoice.updatedItem + '"> </div></td>\n');
@@ -219,7 +203,7 @@ const fillTableInfo = function (shoppingData, editRowNum) {
             newLine += '</div>' + '</tr>';
         }
         wishListTable.innerHTML += newLine
-        //}
+        }
     }
 }
 
@@ -240,17 +224,15 @@ window.onload = function () {
     }).then(console.log)
         .catch(err => console.error);
     // const submitButton = document.getElementById('homelogin')
-    const submitButton = document.getElementById('submitButton');
-     const loginButton = document.getElementById('loginBtn');
-     const registerButton = document.getElementById('registerBtn');
-    // const confirmRegisterButton = document.getElementById('confirmRegister')
-    // homeLoginButton.onclick = homeLogin
-    submitButton.onclick = submit;
+    console.log("I am here!");
+    const registerButton = document.getElementById('registerBtn');
+    const loginButton = document.getElementById('loginBtn');
+    const submitButton = document.getElementById('submitBtn');
+    console.log("I am here yo!")
     submitButton.onclick = hideForm;
-    loginButton.onclick = login;
+    submitButton.onclick = submit;
     registerButton.onclick = register;
-    // cancelRegisterButton.onclick = cancelRegister
-    // confirmRegisterButton.onclick = confirmRegister
+    loginButton.onclick = login;
     // logoutButton.onclick = logout
 }
 
