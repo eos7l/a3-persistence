@@ -1,6 +1,7 @@
 {
   "appdata": [
     {
+      "user": "eos7l",
       "itemName": "Son & Park Beauty Water",
       "category": "Health & Beauty",
       "list": "need",
@@ -8,6 +9,7 @@
       "URL": "https://seph.me/2kxrFgd"
     },
     {
+      "user": "eos7l",
       "itemName": "Givenchy Small GV3 Leather Shoulder Bag",
       "category": "Clothes & Handbags",
       "list": "want",
@@ -15,6 +17,7 @@
       "URL": "http://bit.ly/2md33JW"
     },
     {
+      "user": "eos7l",
       "itemName": "Lenovo Legion Y740",
       "category": "Electronics & Computers",
       "list": "want",
@@ -22,6 +25,7 @@
       "URL": "https://lnv.gy/2lRz8a3"
     },
     {
+      "user": "eos7l",
       "itemName": "Alienware Aurora R8 Desktop",
       "category": "Electronics & Computers",
       "list": "need",
@@ -38,5 +42,6 @@
       "username": "eos7l",
       "password": "swdw"
     },
+    null
   ]
 }

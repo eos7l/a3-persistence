@@ -19,28 +19,28 @@ const express = require('express'),
 
 
 const appdata = [
-        {
+        {   "user":"eos7l",
             "itemName": "Son & Park Beauty Water",
             "category": "Health & Beauty",
             "list": "need",
             "specifiedRetailerOnly": "Yes",
             "URL": "https://seph.me/2kxrFgd"
         },
-        {
+        {   "user":"eos7l",
             "itemName": "Givenchy Small GV3 Leather Shoulder Bag",
             "category": "Clothes & Handbags",
             "list": "want",
             "specifiedRetailerOnly": "No",
             "URL": "http://bit.ly/2md33JW"
         },
-        {
+        {   "user":"eos7l",
             "itemName": "Lenovo Legion Y740",
             "category": "Electronics & Computers",
             "list": "want",
             "specifiedRetailerOnly": "No",
             "URL": "https://lnv.gy/2lRz8a3"
         },
-        {
+        {   "user":"eos7l",
             "itemName": "Alienware Aurora R8 Desktop",
             "category": "Electronics & Computers",
             "list": "need",
@@ -65,16 +65,22 @@ app.use(compression());
 app.use(bodyparser.json());
 app.use(passport.initialize());
 
-//passport.use( new Local( myLocalStrategy ) );
-
+//passport.use( new Local( myLocalStrategy));
 app.get('/', function (req, res) {
     // Cookies that have not been signed
     console.log('Cookies: ', req.cookies);
     // Cookies that have been signed
-    console.log('Signed Cookies: ', req.signedCookies)
+    console.log('Signed Cookies: ', req.signedCookies);
+    res.sendFile(path.join(__dirname, '/public/index.html'));
 });
 
-
+app.get('/main', function (req, res) {
+    // Cookies that have not been signed
+    console.log('Cookies: ', req.cookies);
+    // Cookies that have been signed
+    console.log('Signed Cookies: ', req.signedCookies);
+    res.sendFile( path.join(__dirname, '/public/main.html'));
+});
 
 // all authentication requests in passwords assume that your client
 // is submitting a field named "username" and field named "password".
@@ -102,17 +108,24 @@ const myLocalStrategy = function( username, password, done ) {
   }
 };
 
+
+// passport.use('local-signup', new LocalStrategy({
+//         username : 'username',
+//         password : 'password',
+//         passReqToCallback : true // allows us to pass back the entire request to the callback
+//     },
 passport.use( 'local-login', new Local( myLocalStrategy ) );
 passport.initialize();
 
 
 app.post('/login',
     passport.authenticate( 'local-login',{
-        failureRedirect: "/"
+       // successRedirect: '/main',
+         //failureRedirect: "/"
     } ),
     function( req, res ) {
         console.log( 'user:', req.user );
-        res.redirect('/main');
+        res.json({ status: true });
     }
 );
 
@@ -143,24 +156,49 @@ app.get('/newData', (req, res) => {
     let data = db.get('appdata').value();
     res.send(data)
 });
-
+/*
+app.get('/newData', (req, res) => {
+    if(req.user===undefined){
+        res.redirect(401,'/login')
+    }
+    else{
+        let curUser=req.user.username;
+        res.set('Content-Type', 'application/json');
+        let data = db.find({ 'user': curUser }).get('appdata').value();
+        res.send(data);
+    }
+});
+*/
 app.get('/register', (req, res) => {
     let data = db.get('users').value();
     res.send(data)
 });
 
 app.post('/register', (req, res) => {
-    var data = req.body;
+    let data = req.body;
+    //if (db.get('users').find({ 'username': data.username}).value() != undefined)
     db.get('users').push(data).write();
     res.status(200).send("Added user to database");
 });
-
 
 app.post('/submit', function (req, res) {
     let data = req.body;
     db.get('appdata').push(data).write();
     res.status(200).send("pushed!");
 });
+
+/*
+app.post('/submit', function (req, res) {
+    if(req.user===undefined){
+        res.redirect(401,'/')
+    }
+    else{
+        let curUser=req.user.username;
+        let data=req.body;
+        db.find({ 'user': curUser }).get('appdata').push(data).write();
+        res.status(200).send("pushed!");
+    }
+});*/
 
 app.post('/update', function (req, res) {
     const index = req.body.index,
