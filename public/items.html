@@ -68,11 +68,11 @@
 
 <div id="master-wrapper">
 
-<!--    <div class="preloader">-->
-<!--        <div class="preloader-img">-->
-<!--            <span class="loading-animation animate-flicker"><img src="assets/images/loading.gif" alt="loading"/></span>-->
-<!--        </div>-->
-<!--    </div>-->
+    <!--    <div class="preloader">-->
+    <!--        <div class="preloader-img">-->
+    <!--            <span class="loading-animation animate-flicker"><img src="assets/images/loading.gif" alt="loading"/></span>-->
+    <!--        </div>-->
+    <!--    </div>-->
     <div class="nav-wrapper smoothie">
         <div class="nav-inner smoothie">
             <div class="container-fluid special-max-width">
@@ -141,73 +141,93 @@
                                                data-filter=".photography">Home & Kitchen</a></li>
                                         <li><a class="btn btn-primary btn-transparent" href="#" data-filter=".video">Clothes
                                             & Handbags</a></li>
-                                        <li><a class="btn btn-primary btn-transparent" href="#" data-filter=".othersCat">Others</a></li>
+                                        <li><a class="btn btn-primary btn-transparent" href="#"
+                                               data-filter=".othersCat">Others</a></li>
                                     </ul>
                                     <div class="col-sm-10">
-                                        <div style="height: auto !important;" >
+                                        <div style="height: auto !important;">
                                             <div class="row">
                                                 <div class="mb30 apps">
-<!--                                                this section needs to be changed later-->
-                                                <form id="inputForm">
-                                                    <div style="display: block">
-                                                    <div class="form-group text-center" style="display: inline;padding-bottom: 10px;padding-left:30px;padding-right: 50px">
-                                                    <label for="itemName">Item Name</label>
-                                                    <input id="itemName" name="itemName" type="text" maxlength="100" placeholder="Item name" required>
-                                                    </div>
-                                                        <label for="link" style="display: inline" >Item URL</label>
-                                                        <input id="link" name="link" type="text" maxlength="200" style="width:40%;display: inline" placeholder="URL" required>
-                                                    </div>
-                                                    </div>
+                                                    <!--                                                this section needs to be changed later-->
+                                                    <form id="inputForm">
+                                                        <div style="display: block">
+                                                            <div class="form-group text-center"
+                                                                 style="display: inline;padding-bottom: 10px;padding-left:30px;padding-right: 50px">
+                                                                <label for="itemName">Item Name</label>
+                                                                <input id="itemName" name="itemName" type="text"
+                                                                       maxlength="100" placeholder="Item name"
+                                                                       required/>
+                                                            </div>
+                                                            <label for="link" style="display: inline">Item URL</label>
+                                                            <input id="link" name="link" type="text" maxlength="200"
+                                                                   style="width:40%;display: inline" placeholder="URL"
+                                                                   required/>
+                                                        </div>
+                                                </div>
 
-                                                    <div style="display: inline-block;padding-left: 30px;padding-right: 65px">
-                                                        <label for="listName">List Name</label><br>
-                                                        <div>
-                                                            <input type="radio" id="need" name="listName" value="need"
-                                                                   checked>
-                                                            <label for="need">Need</label>
-                                                        </div>
-                                                        <div>
-                                                            <input type="radio" id="want" name="listName" value="want">
-                                                            <label for="want">Want</label>
-                                                        </div>
-                                                        <div>
-                                                            <input type="radio" id="otherListName" name="listName" value="other">
-                                                            <label for="otherListName">Other</label>
-                                                            <input id="inputListName" type="text" name="listName" onclick="changeRadioButton()"/>​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
-                                                        </div>
+                                                <div style="display: inline-block;padding-left: 30px;padding-right: 65px">
+                                                    <label for="listName">List Name</label><br>
+                                                    <div>
+                                                        <input type="radio" id="need" name="listName" value="need"
+                                                               checked>
+                                                        <label for="need">Need</label>
                                                     </div>
-                                                    <div style="display:inline-block" >
-                                                    <div id="dropDownMenu" >
+                                                    <div>
+                                                        <input type="radio" id="want" name="listName" value="want">
+                                                        <label for="want">Want</label>
+                                                    </div>
+                                                    <div>
+                                                        <input type="radio" id="otherListName" name="listName"
+                                                               value="other">
+                                                        <label for="otherListName">Other</label>
+                                                        <input id="inputListName" type="text" name="listName"
+                                                               onclick="changeRadioButton()"/>​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
+                                                    </div>
+                                                </div>
+                                                <div style="display:inline-block">
+                                                    <div id="dropDownMenu">
                                                         <label for="categoryOptions">Choose the item category:</label>
                                                         <select id="categoryOptions" required>
                                                             <option value="">--Please choose an option--</option>
-                                                            <option id="EC" name="categoryOptions" value="EC" onclick="clearChoice()">Electronics & Computers</option>
-                                                            <option id="HB" name="categoryOptions" value="HB" onclick="clearChoice()">Health & Beauty</option>
-                                                            <option id="HK" name="categoryOptions" value="HK" onclick="clearChoice()">Home & Kitchen</option>
-                                                            <option id="CH" name="categoryOptions" value="CH" onclick="clearChoice()">Clothes & Handbags</option>
-                                                            <option id="otherCategory" name="categoryOptions" value="other" onclick="clearChoice()">Other</option>
+                                                            <option id="EC" name="categoryOptions" value="EC"
+                                                                    onclick="clearChoice()">Electronics & Computers
+                                                            </option>
+                                                            <option id="HB" name="categoryOptions" value="HB"
+                                                                    onclick="clearChoice()">Health & Beauty
+                                                            </option>
+                                                            <option id="HK" name="categoryOptions" value="HK"
+                                                                    onclick="clearChoice()">Home & Kitchen
+                                                            </option>
+                                                            <option id="CH" name="categoryOptions" value="CH"
+                                                                    onclick="clearChoice()">Clothes & Handbags
+                                                            </option>
+                                                            <option id="otherCategory" name="categoryOptions"
+                                                                    value="other" onclick="clearChoice()">Other
+                                                            </option>
                                                         </select>
                                                     </div>
 
-                                                        <label for="retailer">Only shop from this specified retailer?</label>
-                                                        <div>
-                                                            <input type="radio" id="yes" name="retailer" value="yes"
-                                                                   checked>
-                                                            <label for="need">Yes</label>
-                                                        </div>
-                                                        <div>
-                                                            <input type="radio" id="no" name="retailer" value="no">
-                                                            <label for="want">No</label>
-                                                        </div>
+                                                    <label for="retailer">Only shop from this specified
+                                                        retailer?</label>
+                                                    <div>
+                                                        <input type="radio" id="yes" name="retailer" value="yes"
+                                                               checked>
+                                                        <label for="need">Yes</label>
+                                                    </div>
+                                                    <div>
+                                                        <input type="radio" id="no" name="retailer" value="no">
+                                                        <label for="want">No</label>
+                                                    </div>
 
-                                                    </div>
-                                                    <br>
-                                                    <br>
-                                                    <button type="submit" id="submitBtn" class="btn btn-sm  btn-primary" style="float: right">Submit Dream</button>
+                                                </div>
+                                                <br>
+                                                <br>
+                                                <button type="submit" id="submitBtn" class="btn btn-sm  btn-primary"
+                                                        style="float: right">Add
+                                                </button>
                                                 </form>
-                                                    <div class="boxcontainer">
-                                                        <table id="itemTable"></table>
-                                                    </div>
+                                                <div class="boxcontainer">
+                                                    <table id="itemTable"></table>
                                                 </div>
                                             </div>
                                         </div>
@@ -219,68 +239,67 @@
                 </div>
             </div>
         </div>
-    </section>
+</div>
+</section>
 
-    <footer id="footer-wrapper" class="dark-wrapper">
-        <div class="container">
-            <div class="row mb90">
-                <div class="col-md-4 col-sm-12">
-                    <div class="text-widget widget">
-                        <h4 class="widget-title mb40">Location</h4>
-                        <div class="widget-content">
-                            <p>Conveniently enhance high-quality imperatives vis-a-vis team driven technologies.
-                                Intrinsicly fashion economically sound communities rather than principle-centered
-                                deliverables. Synergistically impact.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-12">
-                    <div class="gallery-widget widget mb40">
-                        <div class="widget-content">
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-12">
-                    <div class="mailing-widget widget">
-                        <h4 class="widget-title mb40">Mailing List</h4>
-                        <div class="content-wiget">
-                            <p class="mb40">Subscribe to our newsletter for the latest updates and offers.</p>
-                            <form action="index.html">
-                                <div class="input-group">
-                                    <input class="form-control form-email-widget" placeholder="Email address"
-                                           type="text"><span class="input-group-btn"><input class="btn btn-email"
-                                                                                            type="submit"
-                                                                                            value="✓"></span>
-                                </div>
-                            </form>
-                            <p></p>
-                        </div>
+<footer id="footer-wrapper" class="dark-wrapper">
+    <div class="container">
+        <div class="row mb90">
+            <div class="col-md-4 col-sm-12">
+                <div class="text-widget widget">
+                    <h4 class="widget-title mb40">Location</h4>
+                    <div class="widget-content">
+                        <p>Conveniently enhance high-quality imperatives vis-a-vis team driven technologies.
+                            Intrinsicly fashion economically sound communities rather than principle-centered
+                            deliverables. Synergistically impact.</p>
                     </div>
                 </div>
             </div>
-            <div class="row sub-footer">
-                <div class="col-md-6 footer-social">
-                    <a class="facebook" href="#"><i class="fa fa-facebook"></i></a>
-                    <a class="google" href="#"><i class="fa fa-google-plus"></i></a>
-                    <a class="twitter" href="#"><i class="fa fa-twitter"></i></a>
-                    <a class="pinterest" href="#"><i class="fa fa-pinterest"></i></a>
-                    <a class="blog" href="#"><i class="fa fa-rss"></i></a>
-                    <a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a>
+            <div class="col-md-4 col-sm-12">
+                <div class="gallery-widget widget mb40">
+                    <div class="widget-content">
+
+                    </div>
                 </div>
-                <div class="col-md-6 text-right">
-                    <p class="copyright"><small>© 2019. Designed and Developed by <a
-                            href="http://www.distinctivethemes.com" target="_blank">Distinctive Themes</a></small></p>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <div class="mailing-widget widget">
+                    <h4 class="widget-title mb40">Mailing List</h4>
+                    <div class="content-wiget">
+                        <p class="mb40">Subscribe to our newsletter for the latest updates and offers.</p>
+                        <form action="index.html">
+                            <div class="input-group">
+                                <input class="form-control form-email-widget" placeholder="Email address"
+                                       type="text"><span class="input-group-btn"><input class="btn btn-email"
+                                                                                        type="submit"
+                                                                                        value="✓"></span>
+                            </div>
+                        </form>
+                        <p></p>
+                    </div>
                 </div>
             </div>
         </div>
-    </footer>
+        <div class="row sub-footer">
+            <div class="col-md-6 footer-social">
+                <a class="facebook" href="#"><i class="fa fa-facebook"></i></a>
+                <a class="google" href="#"><i class="fa fa-google-plus"></i></a>
+                <a class="twitter" href="#"><i class="fa fa-twitter"></i></a>
+                <a class="pinterest" href="#"><i class="fa fa-pinterest"></i></a>
+                <a class="blog" href="#"><i class="fa fa-rss"></i></a>
+                <a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a>
+            </div>
+            <div class="col-md-6 text-right">
+                <p class="copyright"><small>© 2019. Designed and Developed by <a
+                        href="http://www.distinctivethemes.com" target="_blank">Distinctive Themes</a></small></p>
+            </div>
+        </div>
+    </div>
+</footer>
 
-    <a href="#" id="back-to-top"><i class="fa fa-angle-up"></i></a>
-
-    <div class="top-frame"></div>
-    <div class="bottom-frame"></div>
-
+<a href="#" id="back-to-top"><i class="fa fa-angle-up"></i></a>
+<div class="top-frame"></div>
+<div class="bottom-frame"></div>
 </div>
 
 <script src="assets/js/jquery.min.js"></script>
@@ -291,167 +310,22 @@
 <script src="assets/js/init.js"></script>
 <script src="script.js"></script>
 <script>
-    const hideForm = function (e) {
-        e.preventDefault();
-        document.getElementById('inputForm').style.display = ""
-    };
-    const submit = function (e) {
-        e.preventDefault();
-        let dropdown = document.getElementById("categoryOptions");
-        const itemName = document.querySelector('#itemName').value,
-            url = document.querySelector('#link').value,
-            category = dropdown.options[dropdown.selectedIndex].value,
-            list = document.querySelector('input[name="listName"]:checked').value,
-            retailer = document.querySelector('input[name="retailer"]:checked').value;
-        let specifiedListName;
-        switch (retailer) {
-            case 'need':
-                specifiedListName = 'need';
-                break;
-            case 'want':
-                specifiedListName = 'want';
-                break;
-            default:
-                if (document.getElementById('otherListName').checked) {
-                    specifiedListName = document.getElementById('inputListName').value
-                }
-                const json = {
-                        'user':curUser,
-                        'itemName': itemName,
-                        'category': category,
-                        'list': list,
-                        'specifiedRetailerOnly': specifiedListName,
-                        'URL': url,
-                    },
-                    body = JSON.stringify(json);
-
-                fetch('/submit', {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body
-                }).then(function (response) {
-                })
-
-                displayDB();
-                return false
-        }
-    }
-
-    const displayDB = function () {
-        fetch('/newData', {
-            method: 'GET'
-        }).then(function (response) {
-            return response.json()
-        }).then(function (dataRow) {
-            fillTableInfo(dataRow, -999)
+    fetch('/loggeduser', {
+        method: 'GET',
+        headers: {'Content-Type': 'application/json'}
+    })
+        .then(function (res) {
+            return res.json()
         })
-    }
-
-
-    function changeRadioButton() {
-        var other = document.getElementById("otherListName");
-        other.value = document.getElementById("inputListName").value;
-        other.checked = true
-        console.log(other.value)
-    }
-
-    function clearChoice() {
-        document.getElementById("otherListName").value = "";
-        document.getElementById("inputListName").value = "";
-    }
-
-    const updateRow = function (row) {
-        let updateItemName = document.getElementById('itemNameInput' + row).value;
-        let updateLink = document.getElementById('linkInput' + row).value;
-        let updateList = document.getElementById('listInput' + row).value;
-        let updateCategory = document.getElementById('categoryInput' + row).value
-        let updateRetailer = document.getElementById('retailerInput' + row).value;
-        const json = {
-            'itemName': updateItemName,
-            'category': updateCategory,
-            'list': updateList,
-            'specifiedRetailerOnly': updateRetailer,
-            'URL': updateLink,
-        }
-        json.index = row
-        const body = JSON.stringify(json);
-        fetch('/update', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body
-        }).then(function (response) {
-            displayDB()
-        })
-    };
-
-    const editRow = function (i) {
-        fetch('/newData', {
-            method: 'GET'
-        }).then(function (response) {
-            return response.json()
-        }).then(function (itemData) {
-            fillTableInfo(itemData, i)
-        })
-    }
-
-    const deleteRow = function (row) {
-        const deletedData = {deletedData: row};
-        console.log(row);
-        const body = JSON.stringify(deletedData);
-        fetch('/delete', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body
-        });
-        displayDB();
-    };
-
-    const fillTableInfo = function (shoppingData, editRowNum) {
-        let wishListTable = document.querySelector('#itemTable');
-        wishListTable.innerHTML =
-            '<tr>\n' +
-            '<th align="center">Item Name</th>\n' +
-            '<th align="center">Category</th>\n' +
-            '<th align="center">List</th>\n' +
-            '<th align="center">Specified Retailer Only?</th>\n' +
-            '<th align="center">URL</th>\n' +
-            '<th align="center">Edit</th>\n' +
-            '<th align="center">Delete</th>\n' +
-            '</tr>';
-        for (let i = 0; i < shoppingData.length; i++) {
-            const userItemChoice = shoppingData[i];
-            if (userItemChoice.user === curUser) {
-                let newLine = '<tr>\n';
-                if (i === editRowNum) {
-                    newLine += ('<td align="center">' + '<input id="itemNameInput' + i + '" type="text" value="' + userItemChoice.updatedItem + '"> </div></td>\n');
-                    newLine += ('<td align="center">' + '<input id="linkInput' + i + '" type="text" value="' + userItemChoice.updatedLink + '"> </div></td>\n');
-                    newLine += ('<td align="center">' + '<input id="listInput' + i + '" type="text" value="' + userItemChoice.updatedList + '"> </div></td>\n');
-                    newLine += ('<td align="center">' + '<input id="categoryInput' + i + '" type="text" value="' + userItemChoice.updatedCategory + '"></div></td>\n');
-                    newLine += ('<td align="center">' + '<input id="retailerInput' + i + '" type="text" value="' + userItemChoice.updatedRetailer + '"></div></td>\n');
-                    newLine += ('<td align="center">' + '<button id="update' + i + '" onclick="updateRow(' + i + ')"> Update </button></div></td>\n');
-                    newLine += ('<td align="center">' + '<button id="delete' + i + '" onclick="deleteRow(' + i + ')"> X </button></div></td>\n');
-                    newLine += '</tr>';
-                } else {
-                    newLine += ('<td align="center">' + userItemChoice.itemName + '</div></td>\n');
-                    newLine += ('<td align="center">' + userItemChoice.url + '</div></td>\n');
-                    newLine += ('<td align="center">' + userItemChoice.category + '</td>\n');
-                    newLine += ('<td align="center">' + userItemChoice.list + '</td>\n');
-                    newLine += ('<td align="center">' + userItemChoice.retailer + '</td>\n');
-                    newLine += ('<td align="center">' + '<button id="' + i + '" onclick="editRow(' + i + ')"> Edit </button></td>\n');
-                    newLine += ('<td align="center">' + '<button id="' + i + '" onclick="deleteRow(' + i + ')"> X </button></td>\n');
-                    newLine += '</div>' + '</tr>';
-                }
-                wishListTable.innerHTML += newLine
-            }
-        }
-    };
-
-
+        .then(function (res) {
+            curUser=res.username});
+    let curUser;
     window.onload = function () {
         const submitButton = document.getElementById('submitBtn');
         if (submitButton !== null) {
             submitButton.onclick = hideForm;
             submitButton.onclick = submit;
+            //submitButton.onclick = displayDB();
         }
     }
 </script>

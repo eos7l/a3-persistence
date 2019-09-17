@@ -40,7 +40,7 @@ const appdata = [
             "specifiedRetailerOnly": "No",
             "URL": "https://lnv.gy/2lRz8a3"
         },
-        {   "user":"eos7l",
+        {   "user":"swain",
             "itemName": "Alienware Aurora R8 Desktop",
             "category": "Electronics & Computers",
             "list": "need",
@@ -52,7 +52,6 @@ const users = [
     {username: 'swain', password: 'cain'},
     {username: 'eos7l', password: 'swdw'}
 ]
-
 
 db.defaults({appdata: appdata, users: users}).write();
 
@@ -72,6 +71,16 @@ app.get('/', function (req, res) {
     // Cookies that have been signed
     console.log('Signed Cookies: ', req.signedCookies);
     res.sendFile(path.join(__dirname, '/public/index.html'));
+});
+
+app.get('/loggeduser', function (req, res) {
+    if (req.user === undefined) {
+        res.json({});
+    } else {
+        res.json({
+            username: req.user
+        });
+    }
 });
 
 app.get('/main', function (req, res) {
@@ -130,8 +139,7 @@ app.post('/login',
 );
 
 passport.serializeUser( ( user, done ) => done( null, user.username ) );
-
-// "name" below refers to whatever piece of info is serialized in seralizeUser,
+// "name" below refers to whatever piece of info is serialized in seralize User,
 // in this example we're using the username
 passport.deserializeUser( ( username, done ) => {
   const user = users.find( u => u.username === username );
@@ -183,7 +191,15 @@ app.post('/register', (req, res) => {
 
 app.post('/submit', function (req, res) {
     let data = req.body;
-    db.get('appdata').push(data).write();
+    const pushData={
+        'user':data.user,
+        'itemName': data.itemName,
+        'category': data.category,
+        'list': data.list,
+        'specifiedRetailerOnly': data.specifiedListName,
+        'URL': data.url,
+    };
+    db.get('appdata').push(pushData).write();
     res.status(200).send("pushed!");
 });
 
