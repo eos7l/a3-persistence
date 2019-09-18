@@ -2,7 +2,7 @@ const express = require('express'),
     app = express(),
     low = require('lowdb'),
     FileSync = require('lowdb/adapters/FileSync'),
-    adapter = new FileSync('data/db1.json'),
+    adapter = new FileSync('data/db2.json'),
     db = low(adapter),
     passport = require('passport'),
     Local = require('passport-local').Strategy,
@@ -19,28 +19,28 @@ const express = require('express'),
 
 
 const appdata = [
-        {   "user":"eos7l",
+        {   "user":"admin",
             "itemName": "Son & Park Beauty Water",
             "category": "Health & Beauty",
             "list": "need",
             "oneRetailerOnly": "Yes",
             "URL": "https://seph.me/2kxrFgd"
         },
-        {   "user":"eos7l",
+        {   "user":"admin",
             "itemName": "Givenchy Small GV3 Leather Shoulder Bag",
             "category": "Clothes & Handbags",
             "list": "want",
             "oneRetailerOnly": "No",
             "URL": "http://bit.ly/2md33JW"
         },
-        {   "user":"eos7l",
+        {   "user":"admin",
             "itemName": "Lenovo Legion Y740",
             "category": "Electronics & Computers",
             "list": "want",
             "oneRetailerOnly": "No",
             "URL": "https://lnv.gy/2lRz8a3"
         },
-        {   "user":"swain",
+        {   "user":"admin",
             "itemName": "Alienware Aurora R8 Desktop",
             "category": "Electronics & Computers",
             "list": "need",
@@ -50,7 +50,8 @@ const appdata = [
     ]
 const users = [
     {username: 'swain', password: 'cain'},
-    {username: 'eos7l', password: 'swdw'}
+    {username: 'eos7l', password: 'swdw'},
+    {username:'admin', password: 'CS4241'}
 ]
 
 db.defaults({appdata: appdata, users: users}).write();
@@ -58,7 +59,7 @@ db.defaults({appdata: appdata, users: users}).write();
 // automatically deliver all files in the public folder
 // with the correct headers / MIME type.
 app.use(express.static(dir));
-app.use(cookieParser());
+//app.use(cookieParser());
 app.use(helmet());
 app.use(compression());
 app.use(bodyparser.json());
@@ -73,15 +74,15 @@ app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname, '/public/index.html'));
 });
 
-app.get('/loggeduser', function (req, res) {
-    if (req.user === undefined) {
-        res.json({});
-    } else {
-        res.json({
-            username: req.user
-        });
-    }
-});
+// app.get('/loggeduser', function (req, res) {
+//     if (req.user === undefined) {
+//         res.json({});
+//     } else {
+//         res.json({
+//             username: req.user
+//         });
+//     }
+// });
 
 app.get('/main', function (req, res) {
     // Cookies that have not been signed
@@ -117,12 +118,6 @@ const myLocalStrategy = function( username, password, done ) {
   }
 };
 
-
-// passport.use('local-signup', new LocalStrategy({
-//         username : 'username',
-//         password : 'password',
-//         passReqToCallback : true // allows us to pass back the entire request to the callback
-//     },
 passport.use( 'local-login', new Local( myLocalStrategy ) );
 passport.initialize();
 
@@ -160,12 +155,12 @@ app.post('/test', function( req, res ) {
   res.json({ status:'success' })
 });
 
-app.get('/newData', (req, res) => {
-    curUser=document.cookie;
-
-    let data = db.get('appdata').find({user:curUser}).value();
+app.post('/newData', (req, res) => {
+    console.log(req.body);
+    let data = db.get('appdata').filter({ user:req.body.user }).value();
+    //let data = db.get('appdata').value();
     console.log(data);
-    res.send(data)
+    res.send(data);
 });
 /*
 app.get('/newData', (req, res) => {
@@ -187,7 +182,6 @@ app.get('/register', (req, res) => {
 
 app.post('/register', (req, res) => {
     let data = req.body;
-    //if (db.get('users').find({ 'username': data.username}).value() != undefined)
     db.get('users').push(data).write();
     res.status(200).send("Added user to database");
 });
@@ -199,7 +193,7 @@ app.post('/submit', function (req, res) {
         'itemName': data.itemName,
         'category': data.category,
         'list': data.list,
-        'oneRetailerOnly': data.specifiedListName,
+        'oneRetailerOnly':data.oneRetailerOnly,
         'URL': data.url,
     };
     db.get('appdata').push(pushData).write();
@@ -226,8 +220,8 @@ app.post('/update', function (req, res) {
         itemName: req.body.itemName,
         category: req.body.category,
         list: req.body.list,
-        url: req.body.url,
-        oneRetailerOnly: req.body.oneRetailerOnly
+        oneRetailerOnly: req.body.oneRetailerOnly,
+        url: req.body.url
     }).write();
     res.status(200).send("updated!")
 })

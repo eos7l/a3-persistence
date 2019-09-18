@@ -11,29 +11,33 @@ To fulfill the requirements:
 - Passport-local
 - Compress-file
 - Server-static
+- Helmet 
 
 ### Authentication Strategy & Database: 
 
-- 
+- I used passport for authentication and lowDB as my database storage. 
 
 ### HTML:
 
-- 
+- I have a total of 5 different HTML pages. 
 
 ### CSS Framework:
 
-- 
+- I used the framework found on templemag. The original template can be found here: https://templatemag.com/demo/Mineem/
+- I chose it because I love its simplistic style with the white background. 
 
 
 Goals:
 ---
 - This application serves as a personal shopping assistant to make the shopping experience smoother and all related items more organized. It is also a proof-of-concept website which can easily turn into something huge.
-- It allows users to add items which they want to monitor the price of. In the ideal world, the user will be able to receive updates once the price is dropped. This is meant for only one logged-in user to see. 
-- It also allows users to post deals/discounts/unused coupons whenever they find one online. The deals are auto-generated to be posted on the main page and can be seen by all including guest users. 
+- It allows users to add items which they want to monitor the price of. In the ideal world, the user will be able to receive updates once the price is dropped (*in the imaginary world). This is meant for only one logged-in user to see. 
+- Ideally, it should allow users to post deals/discounts/unused coupons whenever they find one online. The deals are auto-generated to be posted on the main page and can be seen by all including guest users. 
 
 
 Main Challenges:
 ---
+- Since I have multiple HTML pages, storing the current user's information took me a while to figure out. I tried both local storage and document.cookie and it seems like the local storage method is more staple. 
+- There were actually more documentation online for how to do Mongo and I feel like I should have used Mongo, particularly many answers could be found online for passport-Mongo. I implemented a register method but was never able to make it work. 
 - 
 
 
@@ -46,7 +50,8 @@ Achievements:
 ---
 This is entirely different from what I built for A2 so none of the achievements are repeats from last name. 
 ### Technical:
-- Mongo/Couch DB?
+- Implemented a logout (can be found in the pushdown menu inside account tab)
+- 
 
 
 ### Design:

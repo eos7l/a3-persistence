@@ -1,15 +1,7 @@
 {
   "appdata": [
     {
-      "user": "eos7l",
-      "itemName": "Son & Park Beauty Water",
-      "category": "Health & Beauty",
-      "list": "need",
-      "oneRetailerOnly": "Yes",
-      "URL": "https://seph.me/2kxrFgd"
-    },
-    {
-      "user": "eos7l",
+      "user": "admin",
       "itemName": "Givenchy Small GV3 Leather Shoulder Bag",
       "category": "Clothes & Handbags",
       "list": "want",
@@ -17,81 +9,11 @@
       "URL": "http://bit.ly/2md33JW"
     },
     {
-      "user": "eos7l",
-      "itemName": "Lenovo Legion Y740",
-      "category": "Electronics & Computers",
-      "list": "want",
-      "oneRetailerOnly": "No",
-      "URL": "https://lnv.gy/2lRz8a3"
-    },
-    {
-      "user": "eos7l",
-      "itemName": "Alienware Aurora R8 Desktop",
-      "category": "Electronics & Computers",
+      "user": "admin",
+      "itemName": "vwvr",
+      "category": "Health & Beauty",
       "list": "need",
-      "oneRetailerOnly": "Yes",
-      "URL": "https://dell.to/2mgSaHc"
-    },
-    {
-      "itemName": "dw",
-      "category": "HK",
-      "list": "aw"
-    },
-    {
-      "itemName": "xxqw",
-      "category": "Health & Beauty",
-      "list": "need"
-    },
-    {
-      "itemName": "item name",
-      "category": "Home & Kitchen",
-      "list": "want"
-    },
-    {
-      "itemName": "cwqcw",
-      "category": "Health & Beauty",
-      "list": "need"
-    },
-    {
-      "itemName": "cwqcq",
-      "category": "",
-      "list": "need"
-    },
-    {
-      "user": "username=eos7l; eos7l",
-      "itemName": "dwqdf",
-      "category": "Home & Kitchen",
-      "list": "need"
-    },
-    {
-      "user": "username=; eos7l",
-      "itemName": "swdwq",
-      "category": "Clothes & Handbags",
-      "list": "need"
-    },
-    {
-      "user": "username=; eos7l",
-      "itemName": "swdwq",
-      "category": "Clothes & Handbags",
-      "list": "need"
-    },
-    {
-      "user": "username=; eos7l",
-      "itemName": "swdwq",
-      "category": "Clothes & Handbags",
-      "list": "need"
-    },
-    {
-      "user": "username=; eos7l",
-      "itemName": "swdwq",
-      "category": "Clothes & Handbags",
-      "list": "need"
-    },
-    {
-      "user": "username=; eos7l",
-      "itemName": "d2e",
-      "category": "Home & Kitchen",
-      "list": "need"
+      "oneRetailerOnly": "yes"
     }
   ],
   "users": [

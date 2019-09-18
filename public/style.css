@@ -1707,5 +1707,10 @@ a.logo-light {
 }
 
 #itemTable{
-  width: 50%;
+  table-layout: fixed;
+}
+td{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
 }

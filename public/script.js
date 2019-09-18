@@ -7,7 +7,7 @@
 //     })
 //     .then(function (res) {
 //         curUser=res.username});
-// let curUser;
+ let curUser;
 
 
 const register = function (e) {
@@ -35,7 +35,7 @@ function addUser(userList, username, password) {
             i = userList.length;
         }
     }
-    if (duplicateAccount === true) {
+    if (duplicateAccount === false) {
         const json = {
                 'username': username,
                 'password': password
@@ -71,12 +71,12 @@ const login = function (e) {
     }).then(function (response) {
         if (response.status === 200) {
             curUser = username;
-            document.cookie=curUser;
+            //document.cookie=curUser;
+            window.localStorage;
+            localStorage.setItem('user',curUser);
             window.location = 'main';
             displayDB();
         } else {
-            console.log("curUser=" + curUser);
-            console.log("username=" + username);
             console.log(response);
             alert("Authentication failed!")
         }
@@ -98,8 +98,11 @@ const hideForm = function () {
 };
 
 const displayDB = function () {
+
     fetch('/newData', {
-        method: 'GET'
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ user:getCurUsername })
     }).then(function (response) {
         return response.json()
     }).then(function (dataRow) {
@@ -109,6 +112,7 @@ const displayDB = function () {
 
 const submit = function (e) {
     e.preventDefault();
+    window.getCurUsername = localStorage.getItem('user');
     let dropdown = document.getElementById("categoryOptions");
     const itemName = document.querySelector('#itemName').value,
         category = dropdown.options[dropdown.selectedIndex].value,
@@ -129,7 +133,7 @@ const submit = function (e) {
             }
     }
     const json = {
-            'user': document.cookie,
+            'user': getCurUsername,
             'itemName': itemName,
             'category': category,
             'list': specifiedListName,
@@ -164,7 +168,7 @@ function clearChoice() {
 }
 
 const updateRow = function (row) {
-    //document.getElementById("itemTable").style.width="auto";
+    document.getElementById("itemTable").style.width="auto";
     //document.querySelector("#itemTable").style.width=auto;
     let updateItemName = document.getElementById('itemNameInput' + row).value;
     let updateCategory = document.getElementById('categoryInput' + row).value;
@@ -190,8 +194,12 @@ const updateRow = function (row) {
 };
 
 const editRow = function (i) {
+    console.log("I am in the editRow function");
     fetch('/newData', {
-        method: 'GET'
+        //method: 'GET'
+        method:'POST',
+        headers: {'Content-Type': 'application/json'},
+        body:JSON.stringify({rowNum:i,user:getCurUsername})
     }).then(function (response) {
         return response.json()
     }).then(function (itemData) {
@@ -212,7 +220,6 @@ const deleteRow = function (row) {
 };
 
 const fillTableInfo = function (shoppingData, editRowNum) {
-    console.log("I got up to here!");
     let wishListTable = document.querySelector('#itemTable');
     wishListTable.innerHTML =
         '<tr>\n' +
@@ -224,10 +231,11 @@ const fillTableInfo = function (shoppingData, editRowNum) {
         '<th align="center">Edit</th>\n' +
         '<th align="center">Delete</th>\n' +
         '</tr>';
+    console.log("I am in the fill table function")
     for (let i = 0; i < shoppingData.length; i++) {
+        console.log("I am in the for loop")
         const userItemChoice = shoppingData[i];
-        //curUser=document.cookie;
-        if (userItemChoice.user === curUser) {
+        if (userItemChoice.user === getCurUsername) {
             let newLine = '<tr>\n';
             if (i === editRowNum) {
                 newLine += ('<td align="center">' + '<input id="itemNameInput' + i + '" type="text" value="' + userItemChoice.updatedItem + '"> </div></td>\n');
