@@ -1692,3 +1692,17 @@ a.logo-light {
 .progress-bar-success {
   background-color: #222;
 }
+
+/*self defined table*/
+#form-group-container{
+    display: inline;
+    padding-bottom: 10px;
+    padding-left:30px;
+    padding-right: 50px
+}
+#form-options-container{
+    display: inline-block;
+    padding-left: 30px;
+    padding-right: 65px
+}
+

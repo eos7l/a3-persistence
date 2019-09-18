@@ -98,12 +98,12 @@ const submit = function (e) {
     e.preventDefault();
     let dropdown = document.getElementById("categoryOptions");
     const itemName = document.querySelector('#itemName').value,
-        url = document.querySelector('#link').value,
-        category = dropdown.options[dropdown.selectedIndex].value,
-        list = document.querySelector('input[name="listName"]:checked').value,
-        retailer = document.querySelector('input[name="retailer"]:checked').value;
+          category = dropdown.options[dropdown.selectedIndex].value,
+          list = document.querySelector('input[name="listName"]:checked').value,
+         retailer = document.querySelector('input[name="retailer"]:checked').value;
+         url = document.querySelector('#link').value;
     let specifiedListName;
-    switch (retailer) {
+    switch (list) {
         case 'need':
             specifiedListName = 'need';
             break;
@@ -118,8 +118,8 @@ const submit = function (e) {
                     'user':curUser,
                     'itemName': itemName,
                     'category': category,
-                    'list': list,
-                    'specifiedRetailerOnly': specifiedListName,
+                    'list': specifiedListName,
+                    'specifiedRetailerOnly': retailer,
                     'URL': url,
                 },
                 body = JSON.stringify(json);
@@ -150,10 +150,10 @@ function clearChoice() {
 
 const updateRow = function (row) {
     let updateItemName = document.getElementById('itemNameInput' + row).value;
-    let updateLink = document.getElementById('linkInput' + row).value;
+    let updateCategory = document.getElementById('categoryInput' + row).value;
     let updateList = document.getElementById('listInput' + row).value;
-    let updateCategory = document.getElementById('categoryInput' + row).value
     let updateRetailer = document.getElementById('retailerInput' + row).value;
+    let updateLink = document.getElementById('linkInput' + row).value;
     const json = {
         'itemName': updateItemName,
         'category': updateCategory,
@@ -195,6 +195,7 @@ const deleteRow = function (row) {
 };
 
 const fillTableInfo = function (shoppingData, editRowNum) {
+    console.log("I got up to here!");
     let wishListTable = document.querySelector('#itemTable');
     wishListTable.innerHTML =
         '<tr>\n' +
@@ -212,10 +213,10 @@ const fillTableInfo = function (shoppingData, editRowNum) {
             let newLine = '<tr>\n';
             if (i === editRowNum) {
                 newLine += ('<td align="center">' + '<input id="itemNameInput' + i + '" type="text" value="' + userItemChoice.updatedItem + '"> </div></td>\n');
-                newLine += ('<td align="center">' + '<input id="linkInput' + i + '" type="text" value="' + userItemChoice.updatedLink + '"> </div></td>\n');
-                newLine += ('<td align="center">' + '<input id="listInput' + i + '" type="text" value="' + userItemChoice.updatedList + '"> </div></td>\n');
                 newLine += ('<td align="center">' + '<input id="categoryInput' + i + '" type="text" value="' + userItemChoice.updatedCategory + '"></div></td>\n');
+                newLine += ('<td align="center">' + '<input id="listInput' + i + '" type="text" value="' + userItemChoice.updatedList + '"> </div></td>\n');
                 newLine += ('<td align="center">' + '<input id="retailerInput' + i + '" type="text" value="' + userItemChoice.updatedRetailer + '"></div></td>\n');
+                newLine += ('<td align="center">' + '<input id="linkInput' + i + '" type="text" value="' + userItemChoice.updatedLink + '"> </div></td>\n');
                 newLine += ('<td align="center">' + '<button id="update' + i + '" onclick="updateRow(' + i + ')"> Update </button></div></td>\n');
                 newLine += ('<td align="center">' + '<button id="delete' + i + '" onclick="deleteRow(' + i + ')"> X </button></div></td>\n');
                 newLine += '</tr>';
@@ -248,4 +249,4 @@ window.onload = function () {
     if (loginButton !== null) {
         loginButton.onclick = login;
     }
-}
+};

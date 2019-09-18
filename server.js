@@ -14,7 +14,7 @@ const express = require('express'),
     helmet = require('helmet'),
     router = express.Router(),
     compression = require('compression'),
-    dir='public/'
+    dir='public/',
     port = 8000;
 
 
