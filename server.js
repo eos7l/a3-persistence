@@ -23,28 +23,28 @@ const appdata = [
             "itemName": "Son & Park Beauty Water",
             "category": "Health & Beauty",
             "list": "need",
-            "specifiedRetailerOnly": "Yes",
+            "oneRetailerOnly": "Yes",
             "URL": "https://seph.me/2kxrFgd"
         },
         {   "user":"eos7l",
             "itemName": "Givenchy Small GV3 Leather Shoulder Bag",
             "category": "Clothes & Handbags",
             "list": "want",
-            "specifiedRetailerOnly": "No",
+            "oneRetailerOnly": "No",
             "URL": "http://bit.ly/2md33JW"
         },
         {   "user":"eos7l",
             "itemName": "Lenovo Legion Y740",
             "category": "Electronics & Computers",
             "list": "want",
-            "specifiedRetailerOnly": "No",
+            "oneRetailerOnly": "No",
             "URL": "https://lnv.gy/2lRz8a3"
         },
         {   "user":"swain",
             "itemName": "Alienware Aurora R8 Desktop",
             "category": "Electronics & Computers",
             "list": "need",
-            "specifiedRetailerOnly": "Yes",
+            "oneRetailerOnly": "Yes",
             "URL": "https://dell.to/2mgSaHc"
         }
     ]
@@ -161,7 +161,10 @@ app.post('/test', function( req, res ) {
 });
 
 app.get('/newData', (req, res) => {
-    let data = db.get('appdata').value();
+    curUser=document.cookie;
+
+    let data = db.get('appdata').find({user:curUser}).value();
+    console.log(data);
     res.send(data)
 });
 /*
@@ -196,7 +199,7 @@ app.post('/submit', function (req, res) {
         'itemName': data.itemName,
         'category': data.category,
         'list': data.list,
-        'specifiedRetailerOnly': data.specifiedListName,
+        'oneRetailerOnly': data.specifiedListName,
         'URL': data.url,
     };
     db.get('appdata').push(pushData).write();
@@ -224,7 +227,7 @@ app.post('/update', function (req, res) {
         category: req.body.category,
         list: req.body.list,
         url: req.body.url,
-        specifiedRetailerOnly: req.body.specifiedRetailerOnly
+        oneRetailerOnly: req.body.oneRetailerOnly
     }).write();
     res.status(200).send("updated!")
 })

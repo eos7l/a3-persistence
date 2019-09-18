@@ -5,7 +5,7 @@
       "itemName": "Son & Park Beauty Water",
       "category": "Health & Beauty",
       "list": "need",
-      "specifiedRetailerOnly": "Yes",
+      "oneRetailerOnly": "Yes",
       "URL": "https://seph.me/2kxrFgd"
     },
     {
@@ -13,7 +13,7 @@
       "itemName": "Givenchy Small GV3 Leather Shoulder Bag",
       "category": "Clothes & Handbags",
       "list": "want",
-      "specifiedRetailerOnly": "No",
+      "oneRetailerOnly": "No",
       "URL": "http://bit.ly/2md33JW"
     },
     {
@@ -21,7 +21,7 @@
       "itemName": "Lenovo Legion Y740",
       "category": "Electronics & Computers",
       "list": "want",
-      "specifiedRetailerOnly": "No",
+      "oneRetailerOnly": "No",
       "URL": "https://lnv.gy/2lRz8a3"
     },
     {
@@ -29,48 +29,69 @@
       "itemName": "Alienware Aurora R8 Desktop",
       "category": "Electronics & Computers",
       "list": "need",
-      "specifiedRetailerOnly": "Yes",
+      "oneRetailerOnly": "Yes",
       "URL": "https://dell.to/2mgSaHc"
-    },
-    {
-      "itemName": "cs",
-      "category": "HB",
-      "list": "cs"
-    },
-    {
-      "itemName": "cs",
-      "category": "HB",
-      "list": "cs"
-    },
-    {
-      "itemName": "cs",
-      "category": "HB",
-      "list": "cs"
-    },
-    {
-      "itemName": "cs",
-      "category": "HB",
-      "list": "cs"
-    },
-    {
-      "itemName": "sw",
-      "category": "HK",
-      "list": "fefe"
-    },
-    {
-      "itemName": "sw",
-      "category": "HK",
-      "list": "fefe"
-    },
-    {
-      "itemName": "sw",
-      "category": "HK",
-      "list": "fefe"
     },
     {
       "itemName": "dw",
       "category": "HK",
       "list": "aw"
+    },
+    {
+      "itemName": "xxqw",
+      "category": "Health & Beauty",
+      "list": "need"
+    },
+    {
+      "itemName": "item name",
+      "category": "Home & Kitchen",
+      "list": "want"
+    },
+    {
+      "itemName": "cwqcw",
+      "category": "Health & Beauty",
+      "list": "need"
+    },
+    {
+      "itemName": "cwqcq",
+      "category": "",
+      "list": "need"
+    },
+    {
+      "user": "username=eos7l; eos7l",
+      "itemName": "dwqdf",
+      "category": "Home & Kitchen",
+      "list": "need"
+    },
+    {
+      "user": "username=; eos7l",
+      "itemName": "swdwq",
+      "category": "Clothes & Handbags",
+      "list": "need"
+    },
+    {
+      "user": "username=; eos7l",
+      "itemName": "swdwq",
+      "category": "Clothes & Handbags",
+      "list": "need"
+    },
+    {
+      "user": "username=; eos7l",
+      "itemName": "swdwq",
+      "category": "Clothes & Handbags",
+      "list": "need"
+    },
+    {
+      "user": "username=; eos7l",
+      "itemName": "swdwq",
+      "category": "Clothes & Handbags",
+      "list": "need"
+    },
+    {
+      "user": "username=; eos7l",
+      "itemName": "d2e",
+      "category": "Home & Kitchen",
+      "list": "need"
     }
   ],
   "users": [

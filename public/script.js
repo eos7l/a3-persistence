@@ -1,3 +1,14 @@
+// fetch('/loggeduser', {
+//     method: 'GET',
+//     headers: {'Content-Type': 'application/json'}
+// })
+//     .then(function (res) {
+//         return res.json()
+//     })
+//     .then(function (res) {
+//         curUser=res.username});
+// let curUser;
+
 
 const register = function (e) {
     e.preventDefault();
@@ -11,7 +22,7 @@ const register = function (e) {
         return response.json()
     }).then(function (userList) {
         addUser(userList, username, password);
-        window.location=('/');
+        window.location = ('/');
     })
 };
 
@@ -60,11 +71,12 @@ const login = function (e) {
     }).then(function (response) {
         if (response.status === 200) {
             curUser = username;
-            window.location='main';
+            document.cookie=curUser;
+            window.location = 'main';
             displayDB();
         } else {
-            console.log("curUser="+curUser);
-            console.log("username="+username);
+            console.log("curUser=" + curUser);
+            console.log("username=" + username);
             console.log(response);
             alert("Authentication failed!")
         }
@@ -79,8 +91,9 @@ const login = function (e) {
 }
 
 
-const hideForm = function (e) {
-    e.preventDefault();
+const hideForm = function () {
+    console.log("I got here");
+    //e.preventDefault();
     document.getElementById('inputForm').style.display = "none"
 };
 
@@ -98,10 +111,10 @@ const submit = function (e) {
     e.preventDefault();
     let dropdown = document.getElementById("categoryOptions");
     const itemName = document.querySelector('#itemName').value,
-          category = dropdown.options[dropdown.selectedIndex].value,
-          list = document.querySelector('input[name="listName"]:checked').value,
-         retailer = document.querySelector('input[name="retailer"]:checked').value;
-         url = document.querySelector('#link').value;
+        category = dropdown.options[dropdown.selectedIndex].value,
+        list = document.querySelector('input[name="listName"]:checked').value,
+        retailer = document.querySelector('input[name="retailer"]:checked').value;
+         url = document.querySelector('#url').value;
     let specifiedListName;
     switch (list) {
         case 'need':
@@ -114,26 +127,28 @@ const submit = function (e) {
             if (document.getElementById('otherListName').checked) {
                 specifiedListName = document.getElementById('inputListName').value
             }
-            const json = {
-                    'user':curUser,
-                    'itemName': itemName,
-                    'category': category,
-                    'list': specifiedListName,
-                    'specifiedRetailerOnly': retailer,
-                    'URL': url,
-                },
-                body = JSON.stringify(json);
-            fetch('/submit', {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body
-            }).then(function (response) {
-            })
-            // if(curUser===username){
-            displayDB();
-            //}
-            return false
     }
+    const json = {
+            'user': document.cookie,
+            'itemName': itemName,
+            'category': category,
+            'list': specifiedListName,
+            'oneRetailerOnly': retailer,
+            'URL': url,
+        },
+        body = JSON.stringify(json);
+    //console.log("before fetch");
+    fetch('/submit', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body
+    }).then(function (response) {
+    })
+    // if(curUser===username){
+    displayDB();
+    //hideForm();
+    //}
+    return false
 };
 
 function changeRadioButton() {
@@ -149,6 +164,8 @@ function clearChoice() {
 }
 
 const updateRow = function (row) {
+    //document.getElementById("itemTable").style.width="auto";
+    //document.querySelector("#itemTable").style.width=auto;
     let updateItemName = document.getElementById('itemNameInput' + row).value;
     let updateCategory = document.getElementById('categoryInput' + row).value;
     let updateList = document.getElementById('listInput' + row).value;
@@ -158,7 +175,7 @@ const updateRow = function (row) {
         'itemName': updateItemName,
         'category': updateCategory,
         'list': updateList,
-        'specifiedRetailerOnly': updateRetailer,
+        'oneRetailerOnly': updateRetailer,
         'URL': updateLink,
     }
     json.index = row;
@@ -209,6 +226,7 @@ const fillTableInfo = function (shoppingData, editRowNum) {
         '</tr>';
     for (let i = 0; i < shoppingData.length; i++) {
         const userItemChoice = shoppingData[i];
+        //curUser=document.cookie;
         if (userItemChoice.user === curUser) {
             let newLine = '<tr>\n';
             if (i === editRowNum) {
@@ -222,10 +240,10 @@ const fillTableInfo = function (shoppingData, editRowNum) {
                 newLine += '</tr>';
             } else {
                 newLine += ('<td align="center">' + userItemChoice.itemName + '</div></td>\n');
-                newLine += ('<td align="center">' + userItemChoice.url + '</div></td>\n');
                 newLine += ('<td align="center">' + userItemChoice.category + '</td>\n');
                 newLine += ('<td align="center">' + userItemChoice.list + '</td>\n');
                 newLine += ('<td align="center">' + userItemChoice.retailer + '</td>\n');
+                newLine += ('<td align="center">' + userItemChoice.url + '</div></td>\n');
                 newLine += ('<td align="center">' + '<button id="' + i + '" onclick="editRow(' + i + ')"> Edit </button></td>\n');
                 newLine += ('<td align="center">' + '<button id="' + i + '" onclick="deleteRow(' + i + ')"> X </button></td>\n');
                 newLine += '</div>' + '</tr>';
