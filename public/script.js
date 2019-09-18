@@ -94,15 +94,11 @@ const login = function (e) {
 const hideForm = function () {
     console.log("I got here");
     //e.preventDefault();
-    document.getElementById('formContainer').style.display = "none";
-    document.getElementById('dropDownMenu').style.display = "none";
-    document.getElementById('retailerSelection').style.display = "none";
-    document.getElementById('list-options-container').style.display = "none";
-    document.getElementById('submitBtn').style.display = "none";
+    document.getElementById('inputForm').style.display = "none"
 };
 
 const displayDB = function () {
-    hideForm();
+
     fetch('/newData', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
@@ -227,13 +223,13 @@ const fillTableInfo = function (shoppingData, editRowNum) {
     let wishListTable = document.querySelector('#itemTable');
     wishListTable.innerHTML =
         '<tr>\n' +
-        '<th >Item Name</th>\n' +
-        '<th >Category</th>\n' +
-        '<th >List</th>\n' +
-        '<th >Specified Retailer Only?</th>\n' +
-        '<th >URL</th>\n' +
-        '<th >Edit</th>\n' +
-        '<th >Delete</th>\n' +
+        '<th align="center">Item Name</th>\n' +
+        '<th align="center">Category</th>\n' +
+        '<th align="center">List</th>\n' +
+        '<th align="center">Specified Retailer Only?</th>\n' +
+        '<th align="center">URL</th>\n' +
+        '<th align="center">Edit</th>\n' +
+        '<th align="center">Delete</th>\n' +
         '</tr>';
     console.log("I am in the fill table function")
     for (let i = 0; i < shoppingData.length; i++) {
@@ -242,13 +238,13 @@ const fillTableInfo = function (shoppingData, editRowNum) {
         if (userItemChoice.user === getCurUsername) {
             let newLine = '<tr>\n';
             if (i === editRowNum) {
-                newLine += ('<td>' + '<input id="itemNameInput' + i + '" type="text" value="' + userItemChoice.updatedItem + '"> </div></td>\n');
-                newLine += ('<td>' + '<input id="categoryInput' + i + '" type="text" value="' + userItemChoice.updatedCategory + '"></div></td>\n');
-                newLine += ('<td>' + '<input id="listInput' + i + '" type="text" value="' + userItemChoice.updatedList + '"> </div></td>\n');
-                newLine += ('<td>' + '<input id="retailerInput' + i + '" type="text" value="' + userItemChoice.updatedRetailer + '"></div></td>\n');
-                newLine += ('<td>' + '<input id="linkInput' + i + '" type="text" value="' + userItemChoice.updatedLink + '"> </div></td>\n');
-                newLine += ('<td>' + '<button id="update' + i + '" onclick="updateRow(' + i + ')"> Update </button></div></td>\n');
-                newLine += ('<td>' + '<button id="delete' + i + '" onclick="deleteRow(' + i + ')"> X </button></div></td>\n');
+                newLine += ('<td align="center">' + '<input id="itemNameInput' + i + '" type="text" value="' + userItemChoice.updatedItem + '"> </div></td>\n');
+                newLine += ('<td align="center">' + '<input id="categoryInput' + i + '" type="text" value="' + userItemChoice.updatedCategory + '"></div></td>\n');
+                newLine += ('<td align="center">' + '<input id="listInput' + i + '" type="text" value="' + userItemChoice.updatedList + '"> </div></td>\n');
+                newLine += ('<td align="center">' + '<input id="retailerInput' + i + '" type="text" value="' + userItemChoice.updatedRetailer + '"></div></td>\n');
+                newLine += ('<td align="center">' + '<input id="linkInput' + i + '" type="text" value="' + userItemChoice.updatedLink + '"> </div></td>\n');
+                newLine += ('<td align="center">' + '<button id="update' + i + '" onclick="updateRow(' + i + ')"> Update </button></div></td>\n');
+                newLine += ('<td align="center">' + '<button id="delete' + i + '" onclick="deleteRow(' + i + ')"> X </button></div></td>\n');
                 newLine += '</tr>';
             } else {
                 newLine += ('<td align="center">' + userItemChoice.itemName + '</div></td>\n');

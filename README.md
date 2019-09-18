@@ -51,9 +51,7 @@ Achievements:
 This is entirely different from what I built for A2 so none of the achievements are repeats from last name. 
 ### Technical:
 - Implemented a logout (can be found in the pushdown menu inside account tab)
-- You can register an account
-    - I have pre-created an account that has the username "admin" and passsword "CS4241" for you to see some dummy values I used to intialize the dataset.
-    
+- 
 
 
 ### Design:

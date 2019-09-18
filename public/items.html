@@ -80,9 +80,9 @@
                 <div class="row">
                     <div class="col-sm-3 col-xs-6">
                         <a class="logo-light smoothie" href="main.html"><img alt="" class="logo img-responsive"
-                                                                             src="assets/images/logo-light.png"></a>
+                                                                              src="assets/images/logo-light.png"></a>
                         <a class="logo-dark smoothie" href="main.html"><img alt="" class="logo img-responsive"
-                                                                            src="assets/images/logo.png"></a>
+                                                                             src="assets/images/logo.png"></a>
                     </div>
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse">
                             <span class="tcon tcon-menu--minus menu-btn" aria-label="toggle menu">
@@ -149,99 +149,88 @@
                                         <div style="height: auto !important;">
                                             <div class="row">
                                                 <div class="mb30 apps">
-                                                    <div id="formContainer">
-                                                        <form id="inputForm">
-                                                            <div style="display: block">
-                                                                <div id="form-group-container"
-                                                                     class="form-group text-center">
-                                                                    <label for="itemName">Item Name</label>
-                                                                    <input id="itemName" name="itemName" type="text"
-                                                                           maxlength="100" placeholder="Item name"
-                                                                           required/>
-                                                                </div>
-                                                                <label for="link" style="display: inline">Item
-                                                                    URL</label>
-                                                                <input id="url" name="link" type="text" maxlength="200"
-                                                                       style="width:45%;display: inline"
-                                                                       placeholder="URL"
+                                                    <!--                                                this section needs to be changed later-->
+                                                    <form id="inputForm">
+                                                        <div style="display: block">
+                                                            <div id="form-group-container" class="form-group text-center">
+                                                                <label for="itemName">Item Name</label>
+                                                                <input id="itemName" name="itemName" type="text"
+                                                                       maxlength="100" placeholder="Item name"
                                                                        required/>
                                                             </div>
+                                                            <label for="link" style="display: inline">Item URL</label>
+                                                            <input id="url" name="link" type="text" maxlength="200"
+                                                                   style="width:45%;display: inline" placeholder="URL"
+                                                                   required/>
+                                                        </div>
+                                                </div>
+
+                                                <div id="form-options-container">
+                                                    <label for="listName">List Name</label><br>
+                                                    <div>
+                                                        <input type="radio" id="need" name="listName" value="need"
+                                                               checked>
+                                                        <label for="need">Need</label>
+                                                    </div>
+                                                    <div>
+                                                        <input type="radio" id="want" name="listName" value="want">
+                                                        <label for="want">Want</label>
+                                                    </div>
+                                                    <div>
+                                                        <input type="radio" id="otherListName" name="listName"
+                                                               value="other">
+                                                        <label for="otherListName">Other</label>
+                                                        <input id="inputListName" type="text" name="listName"
+                                                               onclick="changeRadioButton()"/>​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
+                                                    </div>
+                                                </div>
+                                                <div style="display:inline-block">
+                                                    <div id="dropDownMenu">
+                                                        <label for="categoryOptions">Choose the item category:</label>
+                                                        <select id="categoryOptions" required >
+                                                            <option value="">--Please choose an option--</option>
+                                                            <option id="EC" name="categoryOptions" value="Electronics & Computers"
+                                                                    onclick="clearChoice()">Electronics & Computers
+                                                            </option>
+                                                            <option id="HB" name="categoryOptions" value="Health & Beauty"
+                                                                    onclick="clearChoice()">Health & Beauty
+                                                            </option>
+                                                            <option id="HK" name="categoryOptions" value="Home & Kitchen"
+                                                                    onclick="clearChoice()">Home & Kitchen
+                                                            </option>
+                                                            <option id="CH" name="categoryOptions" value="Clothes & Handbags"
+                                                                    onclick="clearChoice()">Clothes & Handbags
+                                                            </option>
+                                                            <option id="otherCategory" name="categoryOptions"
+                                                                    value="others" onclick="changeRadioButton()">Other
+                                                            </option>
+                                                        </select>
                                                     </div>
 
-                                                    <div id="list-options-container">
-                                                        <label for="listName">List Name</label><br>
-                                                        <div>
-                                                            <input type="radio" id="need" name="listName" value="need"
-                                                                   checked>
-                                                            <label for="need">Need</label>
-                                                        </div>
-                                                        <div>
-                                                            <input type="radio" id="want" name="listName" value="want">
-                                                            <label for="want">Want</label>
-                                                        </div>
-                                                        <div>
-                                                            <input type="radio" id="otherListName" name="listName"
-                                                                   value="other">
-                                                            <label for="otherListName">Other</label>
-                                                            <input id="inputListName" type="text" name="listName"
-                                                                   onclick="changeRadioButton()"/>​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
-                                                        </div>
+                                                    <label for="retailer">Only shop from this specified
+                                                        retailer?</label>
+                                                    <div>
+                                                        <input type="radio" id="yes" name="retailer" value="yes"
+                                                               checked>
+                                                        <label for="need">Yes</label>
                                                     </div>
-                                                    <div style="display:inline-block">
-                                                        <div id="dropDownMenu">
-                                                            <label for="categoryOptions">Choose the item
-                                                                category:</label>
-                                                            <select id="categoryOptions" required>
-                                                                <option value="">--Please choose an option--</option>
-                                                                <option id="EC" name="categoryOptions"
-                                                                        value="Electronics & Computers"
-                                                                        onclick="clearChoice()">Electronics & Computers
-                                                                </option>
-                                                                <option id="HB" name="categoryOptions"
-                                                                        value="Health & Beauty"
-                                                                        onclick="clearChoice()">Health & Beauty
-                                                                </option>
-                                                                <option id="HK" name="categoryOptions"
-                                                                        value="Home & Kitchen"
-                                                                        onclick="clearChoice()">Home & Kitchen
-                                                                </option>
-                                                                <option id="CH" name="categoryOptions"
-                                                                        value="Clothes & Handbags"
-                                                                        onclick="clearChoice()">Clothes & Handbags
-                                                                </option>
-                                                                <option id="otherCategory" name="categoryOptions"
-                                                                        value="others" onclick="changeRadioButton()">
-                                                                    Other
-                                                                </option>
-                                                            </select>
-                                                        </div>
-                                                        <div id="retailerSelection">
-                                                            <label for="retailer">Only shop from this specified
-                                                                retailer?</label>
-                                                            <div>
-                                                                <input type="radio" id="yes" name="retailer" value="yes"
-                                                                       checked>
-                                                                <label for="need">Yes</label>
-                                                            </div>
-                                                            <div>
-                                                                <input type="radio" id="no" name="retailer" value="no">
-                                                                <label for="want">No</label>
-                                                            </div>
-                                                        </div>
+                                                    <div>
+                                                        <input type="radio" id="no" name="retailer" value="no">
+                                                        <label for="want">No</label>
                                                     </div>
-                                                    <br>
-                                                    <br>
-                                                    <button type="submit" id="submitBtn" class="btn btn-sm  btn-primary"
-                                                            style="float: right; margin-right: 100px">Add
-                                                    </button>
-                                                    </form>
+
                                                 </div>
+                                                <br>
+                                                <br>
+                                                <button type="submit" id="submitBtn" class="btn btn-sm  btn-primary"
+                                                        style="float: right; margin-right: 100px">Add
+                                                </button>
+                                                </form>
                                                 <div class="boxcontainer">
                                                     <table id="itemTable" class="table table-hover w-auto"></table>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -249,66 +238,67 @@
                 </div>
             </div>
         </div>
-    </section>
+</div>
+</section>
 
-    <footer id="footer-wrapper" class="dark-wrapper">
-        <div class="container">
-            <div class="row mb90">
-                <div class="col-md-4 col-sm-12">
-                    <div class="text-widget widget">
-                        <h4 class="widget-title mb40">Location</h4>
-                        <div class="widget-content">
-                            <p>Conveniently enhance high-quality imperatives vis-a-vis team driven technologies.
-                                Intrinsicly fashion economically sound communities rather than principle-centered
-                                deliverables. Synergistically impact.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-12">
-                    <div class="gallery-widget widget mb40">
-                        <div class="widget-content">
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-12">
-                    <div class="mailing-widget widget">
-                        <h4 class="widget-title mb40">Mailing List</h4>
-                        <div class="content-wiget">
-                            <p class="mb40">Subscribe to our newsletter for the latest updates and offers.</p>
-                            <form action="index.html">
-                                <div class="input-group">
-                                    <input class="form-control form-email-widget" placeholder="Email address"
-                                           type="text"><span class="input-group-btn"><input class="btn btn-email"
-                                                                                            type="submit"
-                                                                                            value="✓"></span>
-                                </div>
-                            </form>
-                            <p></p>
-                        </div>
+<footer id="footer-wrapper" class="dark-wrapper">
+    <div class="container">
+        <div class="row mb90">
+            <div class="col-md-4 col-sm-12">
+                <div class="text-widget widget">
+                    <h4 class="widget-title mb40">Location</h4>
+                    <div class="widget-content">
+                        <p>Conveniently enhance high-quality imperatives vis-a-vis team driven technologies.
+                            Intrinsicly fashion economically sound communities rather than principle-centered
+                            deliverables. Synergistically impact.</p>
                     </div>
                 </div>
             </div>
-            <div class="row sub-footer">
-                <div class="col-md-6 footer-social">
-                    <a class="facebook" href="#"><i class="fa fa-facebook"></i></a>
-                    <a class="google" href="#"><i class="fa fa-google-plus"></i></a>
-                    <a class="twitter" href="#"><i class="fa fa-twitter"></i></a>
-                    <a class="pinterest" href="#"><i class="fa fa-pinterest"></i></a>
-                    <a class="blog" href="#"><i class="fa fa-rss"></i></a>
-                    <a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a>
+            <div class="col-md-4 col-sm-12">
+                <div class="gallery-widget widget mb40">
+                    <div class="widget-content">
+
+                    </div>
                 </div>
-                <div class="col-md-6 text-right">
-                    <p class="copyright"><small>© 2019. Designed and Developed by <a
-                            href="http://www.distinctivethemes.com" target="_blank">Distinctive Themes</a></small></p>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <div class="mailing-widget widget">
+                    <h4 class="widget-title mb40">Mailing List</h4>
+                    <div class="content-wiget">
+                        <p class="mb40">Subscribe to our newsletter for the latest updates and offers.</p>
+                        <form action="index.html">
+                            <div class="input-group">
+                                <input class="form-control form-email-widget" placeholder="Email address"
+                                       type="text"><span class="input-group-btn"><input class="btn btn-email"
+                                                                                        type="submit"
+                                                                                        value="✓"></span>
+                            </div>
+                        </form>
+                        <p></p>
+                    </div>
                 </div>
             </div>
         </div>
-    </footer>
+        <div class="row sub-footer">
+            <div class="col-md-6 footer-social">
+                <a class="facebook" href="#"><i class="fa fa-facebook"></i></a>
+                <a class="google" href="#"><i class="fa fa-google-plus"></i></a>
+                <a class="twitter" href="#"><i class="fa fa-twitter"></i></a>
+                <a class="pinterest" href="#"><i class="fa fa-pinterest"></i></a>
+                <a class="blog" href="#"><i class="fa fa-rss"></i></a>
+                <a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a>
+            </div>
+            <div class="col-md-6 text-right">
+                <p class="copyright"><small>© 2019. Designed and Developed by <a
+                        href="http://www.distinctivethemes.com" target="_blank">Distinctive Themes</a></small></p>
+            </div>
+        </div>
+    </div>
+</footer>
 
-    <a href="#" id="back-to-top"><i class="fa fa-angle-up"></i></a>
-    <div class="top-frame"></div>
-    <div class="bottom-frame"></div>
+<a href="#" id="back-to-top"><i class="fa fa-angle-up"></i></a>
+<div class="top-frame"></div>
+<div class="bottom-frame"></div>
 </div>
 
 <script src="assets/js/jquery.min.js"></script>
