@@ -122,7 +122,7 @@ const submit = function (e) {
         category = dropdown.options[dropdown.selectedIndex].value,
         list = document.querySelector('input[name="listName"]:checked').value,
         retailer = document.querySelector('input[name="retailer"]:checked').value;
-         url = document.querySelector('#url').value;
+         URL = document.querySelector('#url').value;
     let specifiedListName;
     switch (list) {
         case 'need':
@@ -142,7 +142,7 @@ const submit = function (e) {
             'category': category,
             'list': specifiedListName,
             'oneRetailerOnly': retailer,
-            'URL': url,
+            'URL': URL,
         },
         body = JSON.stringify(json);
     //console.log("before fetch");
@@ -247,17 +247,17 @@ const fillTableInfo = function (shoppingData, editRowNum) {
                 newLine += ('<td>' + '<input id="listInput' + i + '" type="text" value="' + userItemChoice.updatedList + '"> </div></td>\n');
                 newLine += ('<td>' + '<input id="retailerInput' + i + '" type="text" value="' + userItemChoice.updatedRetailer + '"></div></td>\n');
                 newLine += ('<td>' + '<input id="linkInput' + i + '" type="text" value="' + userItemChoice.updatedLink + '"> </div></td>\n');
-                newLine += ('<td>' + '<button id="update' + i + '" onclick="updateRow(' + i + ')"> Update </button></div></td>\n');
-                newLine += ('<td>' + '<button id="delete' + i + '" onclick="deleteRow(' + i + ')"> X </button></div></td>\n');
+                newLine += ('<td>' + '<button  class="btn btn-sm" id="update' + i + '" onclick="updateRow(' + i + ')"> Update </button></div></td>\n');
+                newLine += ('<td>' + '<button  class="btn btn-sm"  id="delete' + i + '" onclick="deleteRow(' + i + ')"> X </button></div></td>\n');
                 newLine += '</tr>';
             } else {
-                newLine += ('<td align="center">' + userItemChoice.itemName + '</div></td>\n');
-                newLine += ('<td align="center">' + userItemChoice.category + '</td>\n');
-                newLine += ('<td align="center">' + userItemChoice.list + '</td>\n');
-                newLine += ('<td align="center">' + userItemChoice.retailer + '</td>\n');
-                newLine += ('<td align="center">' + userItemChoice.url + '</div></td>\n');
-                newLine += ('<td align="center">' + '<button id="' + i + '" onclick="editRow(' + i + ')"> Edit </button></td>\n');
-                newLine += ('<td align="center">' + '<button id="' + i + '" onclick="deleteRow(' + i + ')"> X </button></td>\n');
+                newLine += ('<td>' + userItemChoice.itemName + '</div></td>\n');
+                newLine += ('<td>' + userItemChoice.category + '</td>\n');
+                newLine += ('<td>' + userItemChoice.list + '</td>\n');
+                newLine += ('<td>' + userItemChoice.oneRetailerOnly + '</td>\n');
+                newLine += ('<td>' + userItemChoice.URL + '</div></td>\n');
+                newLine += ('<td>' + '<button class="btn btn-sm" id="' + i + '" onclick="editRow(' + i + ')"> Edit </button></td>\n');
+                newLine += ('<td>' + '<button  class="btn btn-sm" id="' + i + '" onclick="deleteRow(' + i + ')"> X </button></td>\n');
                 newLine += '</div>' + '</tr>';
             }
             wishListTable.innerHTML += newLine

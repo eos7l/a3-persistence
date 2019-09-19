@@ -194,7 +194,7 @@ app.post('/submit', function (req, res) {
         'category': data.category,
         'list': data.list,
         'oneRetailerOnly':data.oneRetailerOnly,
-        'URL': data.url,
+        'URL': data.URL,
     };
     db.get('appdata').push(pushData).write();
     res.status(200).send("pushed!");
@@ -221,7 +221,7 @@ app.post('/update', function (req, res) {
         category: req.body.category,
         list: req.body.list,
         oneRetailerOnly: req.body.oneRetailerOnly,
-        url: req.body.url
+        URL: req.body.URL
     }).write();
     res.status(200).send("updated!")
 })
