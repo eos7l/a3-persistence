@@ -59,7 +59,8 @@ This is entirely different from what I built for A2 so none of the achievements 
 - You can sign up for an account.
     - I have pre-created an account that has the username "admin" and passsword "CS4241" for you to see some dummy values I used to initialize the dataset.
 - Implemented registration that does not allow duplicate accounts. 
-- Only displays data of currently logged-in user. 
+- Only displays data of currently logged-in user. This is done through local storage. 
+- I also figured out how to use document.cookie in between HTML pages as an alternative option to keep the currently logged-in user info. 
 - Used more than 5 express packages. 
 
 
