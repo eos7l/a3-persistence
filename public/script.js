@@ -1,13 +1,4 @@
-// fetch('/loggeduser', {
-//     method: 'GET',
-//     headers: {'Content-Type': 'application/json'}
-// })
-//     .then(function (res) {
-//         return res.json()
-//     })
-//     .then(function (res) {
-//         curUser=res.username});
- let curUser;
+let curUser;
 
 
 const register = function (e) {
