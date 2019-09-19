@@ -16,7 +16,7 @@ To fulfill the requirements:
 
 ### Authentication Strategy & Database: 
 
-- I used passport for authentication and lowDB as my database storage. 
+- I used passport for authentication and lowDB as my database storage. Passport is required - although not easy at all because of its limited documentation. I feel like I should have used MongoDB as it is often used in conjunction with passport and there are more tutorials for this online. I opted for the LowDB because Prof said this is the easiest one to start with. 
 
 ### HTML:
 
