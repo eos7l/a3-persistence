@@ -48,6 +48,7 @@ Main Challenges:
 Implications:
 ---
 - Due to the difference in screen size, the page might look different. I suggest using a larger screen for optimal view. 
+- Delete is bit weird once imported to Glitch. There is an unstable delay but it works. 
 
 
 Achievements:
